@@ -134,7 +134,8 @@ def run_prediction(race_name: str, year: int = 2026, use_bootstrap: bool = True)
         return
 
     race_data = featured_data[race_mask]
-    train_data = featured_data[~race_mask & (featured_data["Year"] < year)]
+    # Include earlier rounds from the same year (not just prior years)
+    train_data = featured_data[~race_mask]
 
     if len(train_data) < 100:
         print(f"Warning: Only {len(train_data)} training samples. Results may be unreliable.")
@@ -149,13 +150,16 @@ def run_prediction(race_name: str, year: int = 2026, use_bootstrap: bool = True)
         model = train_ranker(X_train, y_train, groups_train)
         predictions = predict_race_order(model, race_data)
 
-    # DNF classifier
+    # DNF classifier (may return None if training data has only one class)
     print("Training DNF classifier...")
     dnf_model = train_dnf_classifier(train_data)
-    dnf_features = [f for f in ["GridPosition", "driver_elo", "driver_dnf_rate", "constructor_reliability"]
-                    if f in race_data.columns]
-    X_dnf = race_data[dnf_features].fillna(0)
-    predictions["DNFProbability"] = dnf_model.predict_proba(X_dnf.values)[:, 1]
+    if dnf_model is not None:
+        dnf_features = [f for f in ["GridPosition", "driver_elo", "driver_dnf_rate", "constructor_reliability"]
+                        if f in race_data.columns]
+        X_dnf = race_data[dnf_features].fillna(0)
+        predictions["DNFProbability"] = dnf_model.predict_proba(X_dnf.values)[:, 1]
+    else:
+        predictions["DNFProbability"] = 0.05  # Default low DNF probability
 
     # Betting odds comparison
     data_quality_parts = ["Core: OK"]
@@ -210,15 +214,29 @@ def run_test():
     all_predictions = []
     for (year, rnd), race in holdout.groupby(["Year", "RoundNumber"]):
         preds = predict_race_order(model, race)
-        preds["FinishPosition"] = race["FinishPosition"].values
+        # Merge actuals back by Abbreviation to avoid row-order misalignment
+        actuals = race[["Abbreviation", "FinishPosition"]].copy()
+        preds = preds.drop(columns=["FinishPosition"], errors="ignore")
+        preds = preds.merge(actuals, on="Abbreviation", how="left")
         all_predictions.append(preds)
 
     all_preds = pd.concat(all_predictions, ignore_index=True)
-    overall_spearman = evaluate_spearman(all_preds)
+
+    # Use per-race Spearman (same as autoresearch scorer) for consistency
+    from scipy.stats import spearmanr as _spearmanr
+    race_spearmans = []
+    for (yr, rn), race_preds in all_preds.groupby(["Year", "RoundNumber"]):
+        valid = race_preds.dropna(subset=["PredictedPosition", "FinishPosition"])
+        if len(valid) >= 3:
+            corr, _ = _spearmanr(valid["PredictedPosition"], valid["FinishPosition"])
+            if not np.isnan(corr):
+                race_spearmans.append(corr)
+
+    avg_spearman = np.mean(race_spearmans) if race_spearmans else 0.0
 
     print(f"2024 Holdout Results:")
-    print(f"  Spearman rho: {overall_spearman:.3f}")
-    print(f"  Races evaluated: {holdout.groupby(['Year', 'RoundNumber']).ngroups}")
+    print(f"  Mean per-race Spearman rho: {avg_spearman:.3f}")
+    print(f"  Races evaluated: {len(race_spearmans)}")
     print(f"  Total predictions: {len(all_preds)}")
 
 

@@ -58,6 +58,12 @@ def prepare_ranking_data(
     """
     df = df.copy()
 
+    # Sort by Year, RoundNumber to align with groupby key order
+    df = df.sort_values(["Year", "RoundNumber"]).reset_index(drop=True)
+
+    # Drop rows with NaN target (can't rank what we don't know)
+    df = df.dropna(subset=["FinishPosition"])
+
     # Only use rows that have core features
     available_features = [f for f in feature_cols if f in df.columns]
 
@@ -70,7 +76,7 @@ def prepare_ranking_data(
     # Relevance: higher is better. Max position (21 for DNF) minus actual position.
     y = 21 - df["FinishPosition"].values
 
-    # Groups: number of drivers per race
+    # Groups: number of drivers per race (aligned with sorted order)
     groups = df.groupby(["Year", "RoundNumber"]).size().values
 
     return X.values, y, groups
@@ -116,24 +122,26 @@ def train_ranker(
 def train_dnf_classifier(
     df: pd.DataFrame,
     feature_cols: list[str] = DNF_FEATURES,
-) -> LGBMClassifier:
+) -> LGBMClassifier | None:
     """
     Train the DNF probability classifier.
 
-    Args:
-        df: Feature-enriched race data with DNF column
-        feature_cols: Features for DNF prediction
-
-    Returns:
-        Trained LGBMClassifier model
+    Returns None if training data has only one class (no DNFs or all DNFs).
     """
     available_features = [f for f in feature_cols if f in df.columns]
+    if not available_features:
+        return None
+
     X = df[available_features].copy()
     for col in available_features:
         median_val = X[col].median()
         X[col] = X[col].fillna(median_val if not np.isnan(median_val) else 0)
 
     y = df["DNF"].astype(int).values
+
+    # Need both classes to train a classifier
+    if len(set(y)) < 2:
+        return None
 
     model = LGBMClassifier(
         n_estimators=100,
@@ -210,8 +218,16 @@ def predict_with_confidence(
         sampled_dfs = [races.get_group(k) for k in sampled_keys]
         bootstrap_df = pd.concat(sampled_dfs, ignore_index=True)
 
-        X_train, y_train, groups_train = prepare_ranking_data(bootstrap_df, feature_cols)
-        model = train_ranker(X_train, y_train, groups_train)
+        # Compute groups from sampled block list (not groupby, which collapses duplicates)
+        groups_train = np.array([len(df_block) for df_block in sampled_dfs])
+        available_features = [f for f in feature_cols if f in bootstrap_df.columns]
+        X_boot = bootstrap_df[available_features].copy()
+        for col in available_features:
+            med = X_boot[col].median()
+            X_boot[col] = X_boot[col].fillna(med if not np.isnan(med) else 0)
+        y_boot = 21 - bootstrap_df["FinishPosition"].values
+
+        model = train_ranker(X_boot.values, y_boot, groups_train)
 
         result = predict_race_order(model, race_features, feature_cols)
 

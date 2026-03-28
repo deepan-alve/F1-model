@@ -75,13 +75,16 @@ def _compute_teammate_quali_delta(df: pd.DataFrame) -> pd.Series:
         if len(group) < 2:
             continue
 
-        times = group["best_quali"].values
-        indices = group.index.values
+        valid = group.dropna(subset=["best_quali"])
+        if len(valid) < 2:
+            continue
 
-        if len(group) == 2:
-            if not np.isnan(times[0]) and not np.isnan(times[1]):
-                delta.iloc[indices[0]] = times[0] - times[1]
-                delta.iloc[indices[1]] = times[1] - times[0]
+        # Compute delta vs team average for each driver (handles 2+ drivers)
+        team_avg = valid["best_quali"].mean()
+        for idx in group.index:
+            driver_time = group.loc[idx, "best_quali"]
+            if not np.isnan(driver_time):
+                delta.loc[idx] = driver_time - team_avg
 
     return delta
 

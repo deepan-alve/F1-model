@@ -9,6 +9,7 @@ Produces per-race DataFrames with driver results and session info.
 import os
 from pathlib import Path
 
+import numpy as np
 import fastf1
 import pandas as pd
 
@@ -158,9 +159,8 @@ def fetch_season_data(year: int) -> pd.DataFrame:
             merged["Q2"] = None
             merged["Q3"] = None
 
-        # Add DNF flag
-        finished_statuses = {"Finished", "+1 Lap", "+2 Laps", "+3 Laps", "+4 Laps", "+5 Laps"}
-        merged["DNF"] = ~merged["Status"].isin(finished_statuses)
+        # Add DNF flag: classified finishers include "Finished" and "+N Lap(s)"
+        merged["DNF"] = ~merged["Status"].str.match(r"^(Finished|\+\d+ Laps?)$", na=True)
 
         # Encode finish position: DNFs get position 21
         merged["FinishPosition"] = merged["Position"].copy()
@@ -218,30 +218,46 @@ def refresh_current_season(year: int = 2026, existing_data: pd.DataFrame | None 
             continue
 
         race = fetch_race_results(year, round_num)
-        if race is None:
-            # Race hasn't happened yet, stop here
-            break
-
         quali = fetch_qualifying_results(year, round_num)
-        if quali is not None:
-            merged = race.merge(
-                quali[["Abbreviation", "QualifyingPosition", "Q1", "Q2", "Q3"]],
-                on="Abbreviation",
-                how="left",
-            )
+
+        if race is not None:
+            # Race has happened -- merge with qualifying
+            if quali is not None:
+                merged = race.merge(
+                    quali[["Abbreviation", "QualifyingPosition", "Q1", "Q2", "Q3"]],
+                    on="Abbreviation",
+                    how="left",
+                )
+            else:
+                merged = race.copy()
+                merged["QualifyingPosition"] = merged["GridPosition"]
+                merged["Q1"] = None
+                merged["Q2"] = None
+                merged["Q3"] = None
+
+            merged["DNF"] = ~merged["Status"].str.match(r"^(Finished|\+\d+ Laps?)$", na=True)
+            merged["FinishPosition"] = merged["Position"].copy()
+            merged.loc[merged["DNF"], "FinishPosition"] = 21
+            new_results.append(merged)
+
+        elif quali is not None:
+            # Race hasn't happened but qualifying has -- build prediction rows
+            merged = quali.copy()
+            merged["GridPosition"] = merged["QualifyingPosition"]
+            merged["Position"] = np.nan
+            merged["FinishPosition"] = np.nan
+            merged["Status"] = "Upcoming"
+            merged["DNF"] = False
+            merged["Points"] = 0.0
+            merged["DriverNumber"] = ""
+            merged["BroadcastName"] = ""
+            merged["Year"] = year
+            merged["RoundNumber"] = round_num
+            merged["EventName"] = event["EventName"]
+            new_results.append(merged)
         else:
-            merged = race.copy()
-            merged["QualifyingPosition"] = merged["GridPosition"]
-            merged["Q1"] = None
-            merged["Q2"] = None
-            merged["Q3"] = None
-
-        finished_statuses = {"Finished", "+1 Lap", "+2 Laps", "+3 Laps", "+4 Laps", "+5 Laps"}
-        merged["DNF"] = ~merged["Status"].isin(finished_statuses)
-        merged["FinishPosition"] = merged["Position"].copy()
-        merged.loc[merged["DNF"], "FinishPosition"] = 21
-
-        new_results.append(merged)
+            # Neither race nor qualifying data available -- stop
+            break
 
     if not new_results:
         return existing_data if existing_data is not None else pd.DataFrame()
