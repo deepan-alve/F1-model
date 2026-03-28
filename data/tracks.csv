@@ -1,0 +1,25 @@
+circuit_id,circuit_name,country,circuit_type,track_length_km,turns,longest_straight_m,overtaking_difficulty,safety_car_rate,elevation_high,drs_zones
+bahrain,Bahrain International Circuit,Bahrain,permanent,5.412,15,1090,0.4,0.35,0,3
+jeddah,Jeddah Corniche Circuit,Saudi Arabia,street,6.174,27,2220,0.5,0.55,0,3
+melbourne,Albert Park Circuit,Australia,street,5.278,14,1050,0.45,0.40,0,4
+suzuka,Suzuka International Racing Course,Japan,permanent,5.807,18,1200,0.55,0.30,40,2
+shanghai,Shanghai International Circuit,China,permanent,5.451,16,1170,0.4,0.35,0,2
+miami,Miami International Autodrome,USA,street,5.412,19,1280,0.45,0.40,0,3
+imola,Autodromo Enzo e Dino Ferrari,Italy,permanent,4.909,19,780,0.65,0.35,50,2
+monaco,Circuit de Monaco,Monaco,street,3.337,19,520,0.9,0.55,30,1
+barcelona,Circuit de Barcelona-Catalunya,Spain,permanent,4.657,16,1047,0.55,0.25,30,2
+montreal,Circuit Gilles Villeneuve,Canada,street,4.361,14,1025,0.4,0.50,0,3
+spielberg,Red Bull Ring,Austria,permanent,4.318,10,930,0.35,0.30,680,3
+silverstone,Silverstone Circuit,UK,permanent,5.891,18,900,0.5,0.30,150,2
+spa,Circuit de Spa-Francorchamps,Belgium,permanent,7.004,19,2040,0.45,0.40,400,2
+budapest,Hungaroring,Hungary,permanent,4.381,14,720,0.75,0.25,30,1
+zandvoort,Circuit Zandvoort,Netherlands,permanent,4.259,14,750,0.7,0.30,20,1
+monza,Autodromo Nazionale Monza,Italy,permanent,5.793,11,1230,0.3,0.30,160,2
+baku,Baku City Circuit,Azerbaijan,street,6.003,20,2130,0.4,0.55,0,2
+marina_bay,Marina Bay Street Circuit,Singapore,street,4.940,23,920,0.6,0.60,0,3
+austin,Circuit of the Americas,USA,permanent,5.513,20,1150,0.45,0.35,40,2
+mexico_city,Autodromo Hermanos Rodriguez,Mexico,permanent,4.304,17,1270,0.45,0.35,2240,3
+interlagos,Autodromo Jose Carlos Pace,Brazil,permanent,4.309,15,1275,0.4,0.45,770,2
+las_vegas,Las Vegas Strip Circuit,USA,street,6.201,17,1920,0.4,0.45,620,2
+lusail,Lusail International Circuit,Qatar,permanent,5.419,16,1068,0.5,0.35,0,2
+yas_marina,Yas Marina Circuit,UAE,permanent,5.281,16,1280,0.45,0.25,0,2
