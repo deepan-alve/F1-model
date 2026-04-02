@@ -1,0 +1,81 @@
+year,team_name,power_unit,pu_manufacturer
+2019,Mercedes,Mercedes M10 EQ Power+,Mercedes
+2019,Ferrari,Ferrari 064,Ferrari
+2019,Red Bull Racing,Honda RA619H,Honda
+2019,McLaren,Renault E-Tech 19,Renault
+2019,Renault,Renault E-Tech 19,Renault
+2019,Racing Point,Mercedes M10 EQ Power+,Mercedes
+2019,Alfa Romeo Racing,Ferrari 064,Ferrari
+2019,Scuderia Toro Rosso,Honda RA619H,Honda
+2019,Haas F1 Team,Ferrari 064,Ferrari
+2019,Williams,Mercedes M10 EQ Power+,Mercedes
+2020,Mercedes,Mercedes M11 EQ Performance,Mercedes
+2020,Ferrari,Ferrari 065,Ferrari
+2020,Red Bull Racing,Honda RA620H,Honda
+2020,McLaren,Renault E-Tech 20,Renault
+2020,Renault,Renault E-Tech 20,Renault
+2020,Racing Point,Mercedes M11 EQ Performance,Mercedes
+2020,Alfa Romeo Racing,Ferrari 065,Ferrari
+2020,AlphaTauri,Honda RA620H,Honda
+2020,Haas F1 Team,Ferrari 065,Ferrari
+2020,Williams,Mercedes M11 EQ Performance,Mercedes
+2021,Mercedes,Mercedes M12 E Performance,Mercedes
+2021,Ferrari,Ferrari 065/6,Ferrari
+2021,Red Bull Racing,Honda RA621H,Honda
+2021,McLaren,Mercedes M12 E Performance,Mercedes
+2021,Alpine,Renault E-Tech 21,Renault
+2021,Aston Martin,Mercedes M12 E Performance,Mercedes
+2021,Alfa Romeo Racing,Ferrari 065/6,Ferrari
+2021,AlphaTauri,Honda RA621H,Honda
+2021,Haas F1 Team,Ferrari 065/6,Ferrari
+2021,Williams,Mercedes M12 E Performance,Mercedes
+2022,Mercedes,Mercedes M13 E Performance,Mercedes
+2022,Ferrari,Ferrari 066/7,Ferrari
+2022,Red Bull Racing,Red Bull Powertrains RBPTH001,Honda
+2022,McLaren,Mercedes M13 E Performance,Mercedes
+2022,Alpine,Renault E-Tech 22,Renault
+2022,Aston Martin,Mercedes M13 E Performance,Mercedes
+2022,Alfa Romeo,Ferrari 066/7,Ferrari
+2022,AlphaTauri,Red Bull Powertrains RBPTH001,Honda
+2022,Haas F1 Team,Ferrari 066/7,Ferrari
+2022,Williams,Mercedes M13 E Performance,Mercedes
+2023,Mercedes,Mercedes M14 E Performance,Mercedes
+2023,Ferrari,Ferrari 066/8,Ferrari
+2023,Red Bull Racing,Honda RBPTH002,Honda
+2023,McLaren,Mercedes M14 E Performance,Mercedes
+2023,Alpine,Renault E-Tech 23,Renault
+2023,Aston Martin,Mercedes M14 E Performance,Mercedes
+2023,Alfa Romeo,Ferrari 066/8,Ferrari
+2023,AlphaTauri,Honda RBPTH002,Honda
+2023,Haas F1 Team,Ferrari 066/8,Ferrari
+2023,Williams,Mercedes M14 E Performance,Mercedes
+2024,Mercedes,Mercedes M15 E Performance,Mercedes
+2024,Ferrari,Ferrari 066/9,Ferrari
+2024,Red Bull Racing,Honda RBPTH003,Honda
+2024,McLaren,Mercedes M15 E Performance,Mercedes
+2024,Alpine,Renault E-Tech 24,Renault
+2024,Aston Martin,Mercedes M15 E Performance,Mercedes
+2024,Kick Sauber,Ferrari 066/9,Ferrari
+2024,RB,Honda RBPTH003,Honda
+2024,Haas F1 Team,Ferrari 066/9,Ferrari
+2024,Williams,Mercedes M15 E Performance,Mercedes
+2025,Mercedes,Mercedes M16 E Performance,Mercedes
+2025,Ferrari,Ferrari 067,Ferrari
+2025,Red Bull Racing,Honda RBPTH004,Honda
+2025,McLaren,Mercedes M16 E Performance,Mercedes
+2025,Alpine,Renault E-Tech 25,Renault
+2025,Aston Martin,Honda RBPTH004,Honda
+2025,Kick Sauber,Ferrari 067,Ferrari
+2025,Racing Bulls,Honda RBPTH004,Honda
+2025,Haas F1 Team,Ferrari 067,Ferrari
+2025,Williams,Mercedes M16 E Performance,Mercedes
+2026,Mercedes,Mercedes PU26,Mercedes
+2026,Ferrari,Ferrari PU26,Ferrari
+2026,Red Bull Racing,Ford-Red Bull PU26,Ford
+2026,McLaren,Mercedes PU26,Mercedes
+2026,Alpine,Mercedes PU26,Mercedes
+2026,Sauber,Ferrari PU26,Ferrari
+2026,RB,Ford-Red Bull PU26,Ford
+2026,Haas,Ferrari PU26,Ferrari
+2026,Williams,Mercedes PU26,Mercedes
+2026,Cadillac,Ferrari PU26,Ferrari

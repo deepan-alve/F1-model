@@ -182,13 +182,33 @@ def fetch_historical_data(
 
     This is the slow one-time operation. Subsequent calls use FastF1's
     built-in cache and return near-instantly.
+
+    Handles rate limiting by saving partial progress. Re-run to continue
+    from where it left off (cached seasons are skipped automatically).
     """
-    all_seasons = []
+    # Load any partial progress
+    partial = load_from_parquet("all_races.parquet")
+    all_seasons = [partial] if partial is not None and not partial.empty else []
+    completed_years = set(partial["Year"].unique()) if partial is not None and not partial.empty else set()
+
     for year in range(start_year, end_year + 1):
+        if year in completed_years:
+            print(f"Skipping {year} (already cached)")
+            continue
+
         print(f"Fetching {year} season...")
-        season_df = fetch_season_data(year)
-        if not season_df.empty:
-            all_seasons.append(season_df)
+        try:
+            season_df = fetch_season_data(year)
+            if not season_df.empty:
+                all_seasons.append(season_df)
+                # Save partial progress after each season
+                combined = pd.concat(all_seasons, ignore_index=True)
+                save_to_parquet(combined, "all_races.parquet")
+                print(f"  Saved progress ({year} complete)")
+        except Exception as e:
+            print(f"  Error fetching {year}: {e}")
+            print(f"  Partial data saved. Re-run to continue from {year}.")
+            break
 
     if not all_seasons:
         return pd.DataFrame()
