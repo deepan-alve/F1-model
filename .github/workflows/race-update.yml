@@ -2,7 +2,9 @@ name: Race update
 
 on:
   schedule:
-    # Mondays 12:00 UTC — after every Sunday race finishes globally
+    # Saturday 23:00 UTC — refresh upcoming-race prediction with actual qualifying data
+    - cron: '0 23 * * 6'
+    # Monday 12:00 UTC — score the race that just happened
     - cron: '0 12 * * 1'
   workflow_dispatch:
     inputs:

@@ -156,74 +156,110 @@ def fetch_actuals(year: int, round_number: int) -> pd.DataFrame:
 # Main flow
 # ---------------------------------------------------------------------------
 
+def score_completed_race(year: int, latest: pd.Series) -> None:
+    """Train a ranker excluding the latest race, score predictions vs actuals."""
+    race_name = str(latest["EventName"])
+    round_number = int(latest["RoundNumber"])
+
+    print(f"[score] Building training set up to (excluding) {race_name} R{round_number}...")
+    if round_number == 1:
+        # First race of the season: train on full prior season.
+        train_excl = build_training_dataset(through_year=year - 1, through_round=None)
+    else:
+        train_excl = build_training_dataset(through_year=year, through_round=round_number - 1)
+
+    # NOTE: predict_one_race re-trains internally on data strictly before the target.
+    # We pass the full dataset so the target race rows are present to score, but
+    # the ranker is fit only on history.
+    print(f"[score] Predicting {race_name}...")
+    full_dataset = build_training_dataset(through_year=year, through_round=round_number)
+    predictions = predict_one_race(full_dataset, year, round_number)
+
+    print(f"[score] Fetching actuals for {race_name}...")
+    actuals = fetch_actuals(year, round_number)
+
+    print(f"[score] Logging {race_name} predictions + actuals...")
+    accuracy_tracker.log_prediction(race_name, year, predictions, actuals=actuals)
+
+    save_last_processed(year, round_number, race_name)
+
+
+def refresh_upcoming_prediction(year: int, upcoming: pd.Series, latest: pd.Series | None) -> None:
+    """
+    (Re-)generate the prediction for the next upcoming race using the freshest
+    available training data — including any qualifying / sprint sessions that
+    may have happened since the previous run.
+    """
+    up_name = str(upcoming["EventName"])
+    up_round = int(upcoming["RoundNumber"])
+
+    # Train on every race up to (and including) the most recently completed one.
+    if latest is not None:
+        train_through_round = int(latest["RoundNumber"])
+        train_through_year = year
+    else:
+        train_through_round = None
+        train_through_year = year - 1
+
+    print(f"[upcoming] Building training set through {train_through_year} R{train_through_round}...")
+    full_dataset = build_training_dataset(through_year=train_through_year, through_round=train_through_round)
+
+    print(f"[upcoming] Predicting {up_name} (R{up_round})...")
+    try:
+        upcoming_predictions = predict_one_race(full_dataset, year, up_round)
+    except RuntimeError:
+        print(f"[upcoming] {up_name} not yet in dataset — skipping (this is normal if FastF1 hasn't published the entry list yet).")
+        return
+
+    cols = [c for c in ["Abbreviation", "PredictedPosition", "Confidence"] if c in upcoming_predictions.columns]
+    UPCOMING_FILE.write_text(
+        json.dumps(
+            {
+                "year": year,
+                "round": up_round,
+                "race_name": up_name,
+                "race_date_utc": str(upcoming["RaceEndUtc"]),
+                "predictions": upcoming_predictions[cols].to_dict(orient="records"),
+                "generated_at": dt.datetime.now(dt.timezone.utc).isoformat(),
+            },
+            indent=2,
+        )
+    )
+    print(f"[upcoming] Wrote {UPCOMING_FILE}")
+
+
 def main() -> int:
     year = current_year()
     print(f"[race_update] Season: {year}")
 
     schedule = get_schedule(year)
     latest = find_latest_completed(schedule)
-
-    if latest is None:
-        print("[race_update] No completed races yet this season — nothing to do.")
-        return 0
-
-    race_name = str(latest["EventName"])
-    round_number = int(latest["RoundNumber"])
-    print(f"[race_update] Latest completed: {race_name} (R{round_number})")
+    upcoming = find_next_upcoming(schedule)
 
     state = load_last_processed()
     force = os.environ.get("FORCE_REPROCESS", "false").lower() == "true"
-    if not force and state.get("year") == year and state.get("round") == round_number:
-        print(f"[race_update] Already processed {race_name} — skipping.")
-        return 0
 
-    # 1. Score the just-completed race (model trained WITHOUT it).
-    print("[race_update] Building training set up to (excluding) target race...")
-    train_excl = build_training_dataset(through_year=year, through_round=round_number - 1 if round_number > 1 else None)
-    if round_number == 1:
-        # First race of the season: train on full prior season.
-        train_excl = build_training_dataset(through_year=year - 1, through_round=None)
-
-    print("[race_update] Predicting target race...")
-    target_dataset = build_training_dataset(through_year=year, through_round=round_number)
-    predictions = predict_one_race(target_dataset, year, round_number)
-
-    print("[race_update] Fetching actuals...")
-    actuals = fetch_actuals(year, round_number)
-
-    print("[race_update] Logging prediction + actuals...")
-    accuracy_tracker.log_prediction(race_name, year, predictions, actuals=actuals)
-
-    # 2. Predict the next upcoming race (model trained with the latest race included).
-    upcoming = find_next_upcoming(schedule)
-    if upcoming is not None:
-        up_name = str(upcoming["EventName"])
-        up_round = int(upcoming["RoundNumber"])
-        print(f"[race_update] Predicting upcoming: {up_name} (R{up_round})")
-        # Predict with full training data (including the just-completed race).
-        try:
-            upcoming_predictions = predict_one_race(target_dataset, year, up_round)
-        except RuntimeError:
-            # Upcoming race may not yet be in the FastF1 results table; do nothing.
-            print("[race_update] Upcoming race not yet in dataset — skipping.")
+    # 1. Score the most recent completed race iff it's new since the last run.
+    if latest is not None:
+        already_scored = (
+            state.get("year") == year and state.get("round") == int(latest["RoundNumber"])
+        )
+        if force or not already_scored:
+            score_completed_race(year, latest)
         else:
-            UPCOMING_FILE.write_text(
-                json.dumps(
-                    {
-                        "year": year,
-                        "round": up_round,
-                        "race_name": up_name,
-                        "race_date_utc": str(upcoming["RaceEndUtc"]),
-                        "predictions": upcoming_predictions[
-                            [c for c in ["Abbreviation", "PredictedPosition", "Confidence"] if c in upcoming_predictions.columns]
-                        ].to_dict(orient="records"),
-                        "generated_at": dt.datetime.now(dt.timezone.utc).isoformat(),
-                    },
-                    indent=2,
-                )
-            )
+            print(f"[race_update] {latest['EventName']} already scored — skipping post-race step.")
+    else:
+        print("[race_update] No completed races yet this season.")
 
-    save_last_processed(year, round_number, race_name)
+    # 2. ALWAYS refresh the upcoming-race prediction with the latest available data.
+    #    This is the bit that picks up Saturday's qualifying results when the
+    #    workflow runs Sat 23:00 UTC — the prediction in the README updates with
+    #    real grid info before the race.
+    if upcoming is not None:
+        refresh_upcoming_prediction(year, upcoming, latest)
+    else:
+        print("[race_update] No upcoming race on the schedule.")
+
     print("[race_update] Done.")
     return 0
 

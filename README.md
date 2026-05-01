@@ -144,14 +144,20 @@ pytest --cov=src        # with coverage
 
 ## Continuous race updates
 
-`.github/workflows/race-update.yml` runs every Monday at 12:00 UTC (or on demand via *Run workflow*). For each new race that finished since the last run, it:
+`.github/workflows/race-update.yml` runs on two crons (or on demand via *Run workflow*):
+
+| Cron               | What it does                                                                                                                                                  |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Sat 23:00 UTC**  | Re-trains and refreshes the **next-race prediction** using the latest available data — including that day's qualifying. The README's *Next race prediction* section updates with the real grid. |
+| **Mon 12:00 UTC**  | Scores the race that just finished against the prediction made before it, logs the result via `accuracy_tracker.log_prediction`, then refreshes the next-race prediction again.                |
+
+Each run:
 
 1. Refreshes FastF1 historical data (cached between runs).
-2. Trains the ranker on data **excluding** the just-completed race and predicts that race honestly.
-3. Logs the prediction + actual finish via `accuracy_tracker.log_prediction`, producing `data/results/{year}_{race}.json`.
-4. Re-trains with the latest race included and predicts the next upcoming round, writing `data/results/upcoming_prediction.json`.
-5. Regenerates the *Live model accuracy* and *Next race prediction* sections of this README via `scripts/update_readme.py`.
-6. Commits any changes back to `main`.
+2. **If a new race finished** since the last run: trains the ranker on data *excluding* that race, predicts it honestly, fetches actuals, and writes `data/results/{year}_{race}.json`.
+3. **Always**: re-trains on data through the most recent completed race and predicts the next upcoming round into `data/results/upcoming_prediction.json`.
+4. Regenerates the *Live model accuracy* and *Next race prediction* sections of this README via `scripts/update_readme.py`.
+5. Commits any changes back to `main`.
 
 Run it manually in the [Actions tab](../../actions/workflows/race-update.yml).
 
