@@ -7,7 +7,7 @@
 [![MLflow](https://img.shields.io/badge/MLflow-Tracking-0194E2?logo=mlflow&logoColor=white)](https://mlflow.org)
 [![FastF1](https://img.shields.io/badge/FastF1-Data-E10600)](https://docs.fastf1.dev)
 [![Tests](https://img.shields.io/badge/tests-pytest-0A9EDC?logo=pytest&logoColor=white)](https://docs.pytest.org)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![License](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
 
 The model treats each race as a **learning-to-rank** problem rather than position regression: a LightGBM ranker scores every entrant, and the predicted finishing order is the score-sorted list. Driver and team strength are tracked over time with an adaptive **Elo rating system** that adjusts after every race. A second classifier estimates **DNF probability** so the predicted ranking can downweight likely retirements.
 
@@ -175,4 +175,4 @@ Run it manually in the [Actions tab](../../actions/workflows/race-update.yml).
 
 ## License
 
-[MIT](LICENSE) © Deepan Alve
+[GPL-3.0-or-later](LICENSE) — Copyright (C) 2026 Deepan Alve
