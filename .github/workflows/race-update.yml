@@ -35,13 +35,17 @@ jobs:
           python-version: '3.11'
           cache: 'pip'
 
-      - name: Cache FastF1 data
+      - name: Cache FastF1 data + parquet
         uses: actions/cache@v4
         with:
-          path: data/raw/fastf1_cache
-          key: fastf1-cache-${{ hashFiles('experiments/prepare.py') }}-${{ github.run_number }}
+          # data/raw/        — FastF1 HTTP response cache (set by src/data_pipeline.enable_cache)
+          # data/processed/  — all_races.parquet (built by fetch_historical_data, saves partial progress)
+          path: |
+            data/raw
+            data/processed
+          key: f1-data-${{ github.run_id }}
           restore-keys: |
-            fastf1-cache-
+            f1-data-
 
       - name: Install dependencies
         run: pip install -r requirements.txt

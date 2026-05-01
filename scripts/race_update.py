@@ -68,8 +68,11 @@ RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 LAST_PROCESSED_FILE = RESULTS_DIR / "last_processed.json"
 UPCOMING_FILE = RESULTS_DIR / "upcoming_prediction.json"
 
-# How far back to backfill on a cold cache. Limits first-run time in CI.
-HISTORY_START_YEAR = int(os.environ.get("RACE_UPDATE_START_YEAR", "2022"))
+# How far back to backfill on a cold cache. Ergast (FastF1's data backend)
+# rate-limits at 500 calls/hour. 2024+ stays well within budget; subsequent
+# runs use FastF1's HTTP cache (persisted via actions/cache) so this only
+# matters on the very first run.
+HISTORY_START_YEAR = int(os.environ.get("RACE_UPDATE_START_YEAR", "2024"))
 
 # Bootstrap sample count for confidence estimates. predict.py uses 50;
 # we keep it conservative for CI runtime budget.
