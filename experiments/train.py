@@ -1,5 +1,5 @@
 """
-AGENT-MODIFIABLE training script for autoresearch.
+AGENT-MODIFIABLE training script for experiments.
 
 Autoresearch's AI agent can modify this file to explore different:
 - K-factor schedules for Elo
@@ -27,7 +27,7 @@ sys.path.insert(0, str(PROJECT_ROOT))
 from src.elo import compute_elo_ratings
 
 
-# === CONFIGURATION (autoresearch agent modifies these) ===
+# === CONFIGURATION (experiment agent modifies these) ===
 
 # Elo K-factor schedule
 K_STANDARD = 16

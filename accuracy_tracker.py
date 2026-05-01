@@ -173,7 +173,7 @@ def generate_season_report(year: int) -> str:
         elif avg_sp >= 0.5:
             lines.append("Rating: DECENT - model adds value over random")
         else:
-            lines.append("Rating: NEEDS WORK - autoresearch time")
+            lines.append("Rating: NEEDS WORK - more tuning needed")
 
     if races_pending:
         lines.append("")

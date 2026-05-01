@@ -1,4 +1,4 @@
-"""Tests for the autoresearch prepare.py (immutable scorer)."""
+"""Tests for the experiment prepare.py (immutable scorer)."""
 
 import numpy as np
 import pandas as pd
@@ -7,7 +7,7 @@ import pytest
 # Import the evaluate function directly
 import sys
 from pathlib import Path
-sys.path.insert(0, str(Path(__file__).parent.parent / "autoresearch"))
+sys.path.insert(0, str(Path(__file__).parent.parent / "experiments"))
 
 from prepare import evaluate
 

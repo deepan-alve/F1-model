@@ -1,18 +1,51 @@
+# Python
 __pycache__/
 *.py[cod]
 *$py.class
 *.egg-info/
+*.egg
 dist/
 build/
 .eggs/
-*.egg
-.pytest_cache/
-.coverage
-htmlcov/
+*.pyc
+
+# Virtual environments
 venv/
 .venv/
 env/
-data/raw/
-data/processed/*.parquet
+
+# Testing / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Notebooks
 .ipynb_checkpoints/
-*.pyc
+
+# MLflow tracking artifacts (regenerated on each run)
+mlflow.db
+mlflow.db-journal
+mlflow.db-wal
+mlflow.db-shm
+mlruns/
+mlartifacts/
+*.log
+
+# Data — only commit small static reference data; raw + processed are derived
+data/raw/
+data/processed/
+data/results/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
+.env
+.env.local

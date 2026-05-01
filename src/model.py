@@ -6,7 +6,7 @@ Two-stage prediction:
 2. Finishing order (LGBMRanker with LambdaRank)
 
 Bootstrap confidence computed only during prediction (50 samples),
-not during autoresearch experiments.
+not during experiment runs.
 """
 
 import numpy as np
@@ -196,7 +196,7 @@ def predict_with_confidence(
     Trains n_bootstrap models on different bootstrap samples of the
     training data. Confidence = inverse of prediction variance.
 
-    Only used in predict.py, NOT during autoresearch experiments.
+    Only used in predict.py, NOT during experiment runs.
 
     Args:
         df_train: Training data

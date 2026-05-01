@@ -1,5 +1,5 @@
 """
-Build the pre-computed features parquet file for autoresearch.
+Build the pre-computed features parquet file for experiments.
 
 This script:
 1. Loads historical data (from cache or fetches it)
@@ -7,7 +7,7 @@ This script:
 3. Computes Elo ratings
 4. Saves to data/processed/features.parquet
 
-Run this before using autoresearch:
+Run this before using experiments:
     python build_features.py
 """
 
@@ -40,9 +40,9 @@ def main():
     print("Computing Elo ratings...")
     featured = compute_elo_ratings(featured)
 
-    # Save for autoresearch
+    # Save for experiments
     save_to_parquet(featured, "features.parquet")
-    print("Done. autoresearch/prepare.py can now load data/processed/features.parquet")
+    print("Done. experiments/prepare.py can now load data/processed/features.parquet")
 
 
 if __name__ == "__main__":

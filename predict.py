@@ -13,6 +13,7 @@ import argparse
 import sys
 from pathlib import Path
 
+import mlflow
 import numpy as np
 import pandas as pd
 
@@ -35,6 +36,14 @@ from src.model import (
     train_ranker,
 )
 from src.odds import compute_market_delta, fetch_race_odds
+from src.tracking import (
+    build_run_name,
+    configure_mlflow,
+    log_dataframe_artifact,
+    log_json_artifact,
+    log_params,
+    set_run_context,
+)
 from accuracy_tracker import log_prediction
 
 
@@ -96,6 +105,7 @@ def format_prediction_output(
 
 def run_prediction(race_name: str, year: int = 2026, use_bootstrap: bool = True):
     """Run the full prediction pipeline for a specific race."""
+    configure_mlflow("f1-prediction")
     enable_cache()
 
     # Load or fetch historical data
@@ -140,55 +150,83 @@ def run_prediction(race_name: str, year: int = 2026, use_bootstrap: bool = True)
     if len(train_data) < 100:
         print(f"Warning: Only {len(train_data)} training samples. Results may be unreliable.")
 
-    # Train and predict
-    if use_bootstrap:
-        print("Training bootstrap ensemble (50 models)...")
-        predictions = predict_with_confidence(train_data, race_data)
-    else:
-        print("Training single model...")
-        X_train, y_train, groups_train = prepare_ranking_data(train_data)
-        model = train_ranker(X_train, y_train, groups_train)
-        predictions = predict_race_order(model, race_data)
+    with mlflow.start_run(run_name=build_run_name("prediction", year, race_name, "bootstrap" if use_bootstrap else "single")) as run:
+        set_run_context(
+            component="prediction",
+            script="predict.py",
+            stage="inference",
+            dataset="data/processed/all_races.parquet",
+            split=f"train-all-except-{year}-{race_name}",
+            notes="Race-day prediction pipeline",
+        )
+        log_params({
+            "race_name": race_name,
+            "year": year,
+            "use_bootstrap": use_bootstrap,
+            "train_rows": len(train_data),
+            "race_rows": len(race_data),
+            "ranking_features": RANKING_FEATURES,
+        })
 
-    # DNF classifier (may return None if training data has only one class)
-    print("Training DNF classifier...")
-    dnf_model = train_dnf_classifier(train_data)
-    if dnf_model is not None:
-        dnf_features = [f for f in ["GridPosition", "driver_elo", "driver_dnf_rate", "constructor_reliability"]
-                        if f in race_data.columns]
-        X_dnf = race_data[dnf_features].fillna(0)
-        predictions["DNFProbability"] = dnf_model.predict_proba(X_dnf.values)[:, 1]
-    else:
-        predictions["DNFProbability"] = 0.05  # Default low DNF probability
+        if use_bootstrap:
+            print("Training bootstrap ensemble (50 models)...")
+            predictions = predict_with_confidence(train_data, race_data)
+        else:
+            print("Training single model...")
+            X_train, y_train, groups_train = prepare_ranking_data(train_data)
+            model = train_ranker(X_train, y_train, groups_train)
+            predictions = predict_race_order(model, race_data)
 
-    # Betting odds comparison
-    data_quality_parts = ["Core: OK"]
-    print("Fetching betting odds...")
-    odds = fetch_race_odds()
-    predictions = compute_market_delta(predictions, odds)
-    if odds is not None:
-        data_quality_parts.append("Odds: OK")
-    else:
-        data_quality_parts.append("Odds: unavailable")
+        print("Training DNF classifier...")
+        dnf_model = train_dnf_classifier(train_data)
+        if dnf_model is not None:
+            dnf_features = [f for f in ["GridPosition", "driver_elo", "driver_dnf_rate", "constructor_reliability"]
+                            if f in race_data.columns]
+            X_dnf = race_data[dnf_features].fillna(0)
+            predictions["DNFProbability"] = dnf_model.predict_proba(X_dnf.values)[:, 1]
+        else:
+            predictions["DNFProbability"] = 0.05
 
-    data_quality = " | ".join(data_quality_parts)
+        data_quality_parts = ["Core: OK"]
+        print("Fetching betting odds...")
+        odds = fetch_race_odds()
+        predictions = compute_market_delta(predictions, odds)
+        if odds is not None:
+            data_quality_parts.append("Odds: OK")
+        else:
+            data_quality_parts.append("Odds: unavailable")
 
-    # Format and print
-    output = format_prediction_output(predictions, race_name, year, data_quality)
-    print()
-    print(output)
+        data_quality = " | ".join(data_quality_parts)
+        output = format_prediction_output(predictions, race_name, year, data_quality)
+        print()
+        print(output)
 
-    # Log prediction
-    log_prediction(race_name, year, predictions)
+        log_prediction(race_name, year, predictions)
+        log_dataframe_artifact(predictions, "tables", f"{year}_{race_name.replace(' ', '_').lower()}_predictions.csv")
+        log_json_artifact(
+            {
+                "run_id": run.info.run_id,
+                "race_name": race_name,
+                "year": year,
+                "predicted_winner": predictions.iloc[0]["Abbreviation"],
+                "data_quality": data_quality,
+            },
+            "reports",
+            "prediction_summary.json",
+        )
+        mlflow.log_metric("prediction_rows", len(predictions))
+        mlflow.log_metric("avg_confidence", float(predictions.get("Confidence", pd.Series([0])).mean()))
+        mlflow.log_metric("avg_dnf_probability", float(predictions["DNFProbability"].mean()))
 
-    # If we have actual results, show accuracy
-    if "FinishPosition" in predictions.columns and predictions["FinishPosition"].notna().any():
-        spearman = evaluate_spearman(predictions)
-        print(f"\nAccuracy (Spearman rho): {spearman:.3f}")
+        if "FinishPosition" in predictions.columns and predictions["FinishPosition"].notna().any():
+            spearman = evaluate_spearman(predictions)
+            mlflow.log_metric("spearman", float(spearman))
+            print(f"\nAccuracy (Spearman rho): {spearman:.3f}")
 
 
 def run_test():
     """Run prediction on 2025 holdout data to validate the model."""
+    configure_mlflow("f1-prediction")
     enable_cache()
 
     all_data = load_from_parquet("all_races.parquet")
@@ -207,37 +245,65 @@ def run_test():
         print("No 2024 data available for testing.")
         return
 
-    X_train, y_train, groups_train = prepare_ranking_data(train)
-    model = train_ranker(X_train, y_train, groups_train)
+    with mlflow.start_run(run_name=build_run_name("prediction-test", "holdout", 2024)) as run:
+        set_run_context(
+            component="prediction-test",
+            script="predict.py",
+            stage="evaluation",
+            dataset="data/processed/all_races.parquet",
+            split="train<=2023-holdout=2024",
+            notes="Prediction-script holdout validation",
+        )
+        log_params({
+            "train_year_max": 2023,
+            "holdout_year": 2024,
+            "ranking_features": RANKING_FEATURES,
+            "train_rows": len(train),
+            "holdout_rows": len(holdout),
+        })
 
-    # Predict each race in holdout
-    all_predictions = []
-    for (year, rnd), race in holdout.groupby(["Year", "RoundNumber"]):
-        preds = predict_race_order(model, race)
-        # Merge actuals back by Abbreviation to avoid row-order misalignment
-        actuals = race[["Abbreviation", "FinishPosition"]].copy()
-        preds = preds.drop(columns=["FinishPosition"], errors="ignore")
-        preds = preds.merge(actuals, on="Abbreviation", how="left")
-        all_predictions.append(preds)
+        X_train, y_train, groups_train = prepare_ranking_data(train)
+        model = train_ranker(X_train, y_train, groups_train)
 
-    all_preds = pd.concat(all_predictions, ignore_index=True)
+        all_predictions = []
+        for (year, rnd), race in holdout.groupby(["Year", "RoundNumber"]):
+            preds = predict_race_order(model, race)
+            actuals = race[["Abbreviation", "FinishPosition"]].copy()
+            preds = preds.drop(columns=["FinishPosition"], errors="ignore")
+            preds = preds.merge(actuals, on="Abbreviation", how="left")
+            all_predictions.append(preds)
 
-    # Use per-race Spearman (same as autoresearch scorer) for consistency
-    from scipy.stats import spearmanr as _spearmanr
-    race_spearmans = []
-    for (yr, rn), race_preds in all_preds.groupby(["Year", "RoundNumber"]):
-        valid = race_preds.dropna(subset=["PredictedPosition", "FinishPosition"])
-        if len(valid) >= 3:
-            corr, _ = _spearmanr(valid["PredictedPosition"], valid["FinishPosition"])
-            if not np.isnan(corr):
-                race_spearmans.append(corr)
+        all_preds = pd.concat(all_predictions, ignore_index=True)
 
-    avg_spearman = np.mean(race_spearmans) if race_spearmans else 0.0
+        from scipy.stats import spearmanr as _spearmanr
+        race_spearmans = []
+        for (yr, rn), race_preds in all_preds.groupby(["Year", "RoundNumber"]):
+            valid = race_preds.dropna(subset=["PredictedPosition", "FinishPosition"])
+            if len(valid) >= 3:
+                corr, _ = _spearmanr(valid["PredictedPosition"], valid["FinishPosition"])
+                if not np.isnan(corr):
+                    race_spearmans.append(corr)
 
-    print(f"2024 Holdout Results:")
-    print(f"  Mean per-race Spearman rho: {avg_spearman:.3f}")
-    print(f"  Races evaluated: {len(race_spearmans)}")
-    print(f"  Total predictions: {len(all_preds)}")
+        avg_spearman = np.mean(race_spearmans) if race_spearmans else 0.0
+        mlflow.log_metric("mean_per_race_spearman", float(avg_spearman))
+        mlflow.log_metric("race_count", len(race_spearmans))
+        mlflow.log_metric("prediction_rows", len(all_preds))
+        log_dataframe_artifact(all_preds, "tables", "predict_holdout_results.csv")
+        log_json_artifact(
+            {
+                "run_id": run.info.run_id,
+                "holdout_year": 2024,
+                "mean_per_race_spearman": float(avg_spearman),
+                "races_evaluated": len(race_spearmans),
+            },
+            "reports",
+            "predict_holdout_summary.json",
+        )
+
+        print(f"2024 Holdout Results:")
+        print(f"  Mean per-race Spearman rho: {avg_spearman:.3f}")
+        print(f"  Races evaluated: {len(race_spearmans)}")
+        print(f"  Total predictions: {len(all_preds)}")
 
 
 def main():
