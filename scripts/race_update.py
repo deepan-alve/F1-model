@@ -225,8 +225,17 @@ def score_completed_race(featured: pd.DataFrame, year: int, latest: pd.Series) -
 
     actuals = race_data[["Abbreviation", "FinishPosition"]].copy()
 
-    print(f"[score] Logging {race_name} via accuracy_tracker...")
-    accuracy_tracker.log_prediction(race_name, year, predictions, actuals=actuals)
+    # Two-call flow: log_prediction stores the prediction JSON (using only
+    # Abbreviation / PredictedPosition / Confidence columns), then
+    # update_with_actuals reads that slim JSON back, computes Spearman, and
+    # writes actuals. Doing this in one combined call would feed _compute_-
+    # race_spearman a DataFrame that still carries FinishPosition from the
+    # source feature matrix, which collides with actuals during merge.
+    print(f"[score] Logging {race_name} prediction via accuracy_tracker...")
+    accuracy_tracker.log_prediction(race_name, year, predictions)
+
+    print(f"[score] Updating {race_name} with actual results...")
+    accuracy_tracker.update_with_actuals(race_name, year, actuals)
 
     save_last_processed(year, round_number, race_name)
     return True
