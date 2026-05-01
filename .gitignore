@@ -31,10 +31,14 @@ mlruns/
 mlartifacts/
 *.log
 
-# Data — derived artifacts only. data/results/ is intentionally tracked
-# (race log + upcoming prediction JSONs are committed by the workflow).
+# Data — most derived artifacts ignored. Two exceptions:
+#   - data/results/ (intentionally tracked: per-race JSONs from the workflow)
+#   - data/processed/all_races.parquet (committed seed so CI doesn't have to
+#     backfill 2019-2025 from FastF1 every time, which trips Ergast's
+#     500 calls/hour rate limit on shared GitHub runner IPs)
 data/raw/
 data/processed/
+!data/processed/all_races.parquet
 
 # IDE
 .idea/
