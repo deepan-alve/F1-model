@@ -1,0 +1,16 @@
+F1-model
+Formula 1 race finishing-order prediction
+
+Copyright (C) 2026 Deepan Alve <https://github.com/deepan-alve>
+
+This project is licensed under the GNU General Public License v3.0 or
+later — see LICENSE for the full text.
+
+If you fork or build on this project, you must:
+
+  - Keep this NOTICE and the LICENSE file intact.
+  - Preserve the copyright line above in any source files that
+    contain it.
+  - Release derivative works under the same GPL-3.0-or-later terms.
+  - Visibly credit Deepan Alve <https://github.com/deepan-alve> in
+    any user-facing distribution (about screen, README, or docs).
