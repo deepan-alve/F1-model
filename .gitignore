@@ -31,10 +31,10 @@ mlruns/
 mlartifacts/
 *.log
 
-# Data — only commit small static reference data; raw + processed are derived
+# Data — derived artifacts only. data/results/ is intentionally tracked
+# (race log + upcoming prediction JSONs are committed by the workflow).
 data/raw/
 data/processed/
-data/results/
 
 # IDE
 .idea/
