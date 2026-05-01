@@ -37,7 +37,7 @@ mlartifacts/
 #     backfill 2019-2025 from FastF1 every time, which trips Ergast's
 #     500 calls/hour rate limit on shared GitHub runner IPs)
 data/raw/
-data/processed/
+data/processed/*
 !data/processed/all_races.parquet
 
 # IDE
