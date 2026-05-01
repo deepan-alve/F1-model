@@ -1,0 +1,65 @@
+name: Race update
+
+on:
+  schedule:
+    # Mondays 12:00 UTC — after every Sunday race finishes globally
+    - cron: '0 12 * * 1'
+  workflow_dispatch:
+    inputs:
+      force:
+        description: 'Process even if last_processed already covers latest race'
+        required: false
+        default: 'false'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: race-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Cache FastF1 data
+        uses: actions/cache@v4
+        with:
+          path: data/raw/fastf1_cache
+          key: fastf1-cache-${{ hashFiles('experiments/prepare.py') }}-${{ github.run_number }}
+          restore-keys: |
+            fastf1-cache-
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Process latest race + predict next
+        env:
+          FORCE_REPROCESS: ${{ github.event.inputs.force }}
+        run: python scripts/race_update.py
+
+      - name: Regenerate README sections
+        run: python scripts/update_readme.py
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name  'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/results/ README.md
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "chore: update predictions and accuracy report [skip ci]"
+            git push
+          fi

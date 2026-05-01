@@ -13,6 +13,20 @@ The model treats each race as a **learning-to-rank** problem rather than positio
 
 Every training run, backtest, and prediction is logged to **MLflow** — parameters, metrics, feature importance, predictions, and the serialized model — so each run is reproducible and comparable.
 
+<!-- accuracy-start -->
+## Live model accuracy
+
+_Auto-updated by [.github/workflows/race-update.yml](.github/workflows/race-update.yml) every Monday after each race._
+
+_No 2026 races scored yet — check back after the next round._
+<!-- accuracy-end -->
+
+<!-- next-race-start -->
+## Next race prediction
+
+_No upcoming race scheduled, or prediction not yet generated._
+<!-- next-race-end -->
+
 ## Pipelines
 
 | Script                  | Purpose                                                              |
@@ -127,6 +141,19 @@ pytest                  # full suite
 pytest -k elo           # just Elo tests
 pytest --cov=src        # with coverage
 ```
+
+## Continuous race updates
+
+`.github/workflows/race-update.yml` runs every Monday at 12:00 UTC (or on demand via *Run workflow*). For each new race that finished since the last run, it:
+
+1. Refreshes FastF1 historical data (cached between runs).
+2. Trains the ranker on data **excluding** the just-completed race and predicts that race honestly.
+3. Logs the prediction + actual finish via `accuracy_tracker.log_prediction`, producing `data/results/{year}_{race}.json`.
+4. Re-trains with the latest race included and predicts the next upcoming round, writing `data/results/upcoming_prediction.json`.
+5. Regenerates the *Live model accuracy* and *Next race prediction* sections of this README via `scripts/update_readme.py`.
+6. Commits any changes back to `main`.
+
+Run it manually in the [Actions tab](../../actions/workflows/race-update.yml).
 
 ## License
 
