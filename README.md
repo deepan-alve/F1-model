@@ -18,7 +18,17 @@ Every training run, backtest, and prediction is logged to **MLflow** — paramet
 
 _Auto-updated by [.github/workflows/race-update.yml](.github/workflows/race-update.yml) every Monday after each race._
 
-_No 2026 races scored yet — check back after the next round._
+### 2026 season — 1 race(s) scored
+
+| Mean Spearman | Mean Top-3 (out of 3) | Rating |
+|---|---|---|
+| 0.890 | 2.00 | STRONG |
+
+### Per-race results
+
+| Round | Race | Spearman | Top-3 | Predicted P1 → P3 | Actual P1 → P3 |
+|---|---|---|---|---|---|
+|  | Japanese Grand Prix | 0.890 | 2/3 | ANT → RUS → LEC | ANT → PIA → LEC |
 <!-- accuracy-end -->
 
 <!-- next-race-start -->
