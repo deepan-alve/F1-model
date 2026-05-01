@@ -112,6 +112,23 @@ def find_next_upcoming(schedule: pd.DataFrame) -> pd.Series | None:
     return upcoming.iloc[0] if len(upcoming) else None
 
 
+def race_json_path(year: int, race_name: str) -> Path:
+    """Match accuracy_tracker.log_prediction's filename convention."""
+    slug = race_name.lower().replace(" ", "_")
+    return RESULTS_DIR / f"{year}_{slug}.json"
+
+
+def find_unscored_completed(schedule: pd.DataFrame, year: int) -> list[pd.Series]:
+    """All completed races (chronological order) that don't yet have a JSON."""
+    now = pd.Timestamp.now(tz="UTC")
+    completed = schedule[schedule["RaceEndUtc"] < now]
+    unscored: list[pd.Series] = []
+    for _, race in completed.iterrows():
+        if not race_json_path(year, str(race["EventName"])).exists():
+            unscored.append(race)
+    return unscored
+
+
 # ---------------------------------------------------------------------------
 # State
 # ---------------------------------------------------------------------------
@@ -316,30 +333,32 @@ def main() -> int:
         f"{(upcoming['EventName'] + ' (R' + str(int(upcoming['RoundNumber'])) + ')') if upcoming is not None else 'none'}"
     )
 
-    # Bail out before doing expensive data loading if there's literally
-    # nothing this script could do (no completed race, no upcoming race).
+    # Bail before expensive data loading if there's literally nothing to do.
     if latest is None and upcoming is None:
         print("[race_update] Nothing to score, nothing to predict.")
         return 0
 
     featured = load_and_refresh(year)
 
-    # 1. Score the most recent completed race iff it's new since last run.
-    state = load_last_processed()
+    # 1. Score every completed race that doesn't yet have a JSON in
+    #    data/results/. On the first real run this backfills the whole
+    #    season; subsequent runs only score the newly-finished race.
+    #    FORCE_REPROCESS=true re-scores every completed race regardless.
     force = os.environ.get("FORCE_REPROCESS", "false").lower() == "true"
 
-    if latest is not None:
-        already_scored = (
-            state.get("year") == year
-            and state.get("round") == int(latest["RoundNumber"])
-        )
-        if force or not already_scored:
-            score_completed_race(featured, year, latest)
-        else:
-            print(
-                f"[race_update] {latest['EventName']} already scored — "
-                f"skipping post-race step."
-            )
+    if force:
+        now = pd.Timestamp.now(tz="UTC")
+        races_to_score = [r for _, r in schedule[schedule["RaceEndUtc"] < now].iterrows()]
+    else:
+        races_to_score = find_unscored_completed(schedule, year)
+
+    if not races_to_score:
+        print("[race_update] No new completed races to score.")
+    else:
+        names = ", ".join(str(r["EventName"]) for r in races_to_score)
+        print(f"[race_update] Scoring {len(races_to_score)} race(s): {names}")
+        for race in races_to_score:
+            score_completed_race(featured, year, race)
 
     # 2. Always refresh the upcoming-race prediction with the latest data.
     if upcoming is not None:
