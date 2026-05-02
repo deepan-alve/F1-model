@@ -36,7 +36,20 @@ _Auto-updated by [.github/workflows/race-update.yml](.github/workflows/race-upda
 <!-- next-race-start -->
 ## Next race prediction
 
-_No upcoming race scheduled, or prediction not yet generated._
+**2026 Miami Grand Prix — Round 4**
+
+| Predicted | Driver | Confidence |
+|---|---|---|
+| 1 | ANT | 86.62 |
+| 2 | LEC | 89.59 |
+| 3 | VER | 88.95 |
+| 4 | RUS | 89.91 |
+| 5 | NOR | 84.19 |
+| 6 | PIA | 91.98 |
+| 7 | HAM | 88.33 |
+| 8 | HAD | 90.57 |
+| 9 | GAS | 90.47 |
+| 10 | COL | 84.44 |
 <!-- next-race-end -->
 
 ## Pipelines

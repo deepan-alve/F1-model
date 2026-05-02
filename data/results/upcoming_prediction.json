@@ -1,0 +1,164 @@
+{
+  "year": 2026,
+  "round": 4,
+  "race_name": "Miami Grand Prix",
+  "race_date_utc": "2026-05-03 20:00:00+00:00",
+  "predictions": [
+    {
+      "Abbreviation": "ANT",
+      "TeamName": "Mercedes",
+      "PredictedPosition": 1,
+      "Confidence": 86.62197572445811,
+      "DNFProbability": 0.05059267522444825
+    },
+    {
+      "Abbreviation": "LEC",
+      "TeamName": "Ferrari",
+      "PredictedPosition": 2,
+      "Confidence": 89.58615740761238,
+      "DNFProbability": 0.07812287440380361
+    },
+    {
+      "Abbreviation": "VER",
+      "TeamName": "Red Bull Racing",
+      "PredictedPosition": 3,
+      "Confidence": 88.95289325238898,
+      "DNFProbability": 0.03999570606516756
+    },
+    {
+      "Abbreviation": "RUS",
+      "TeamName": "Mercedes",
+      "PredictedPosition": 4,
+      "Confidence": 89.90859042100199,
+      "DNFProbability": 0.058188230275047624
+    },
+    {
+      "Abbreviation": "NOR",
+      "TeamName": "McLaren",
+      "PredictedPosition": 5,
+      "Confidence": 84.19296805364245,
+      "DNFProbability": 0.03510720670664215
+    },
+    {
+      "Abbreviation": "PIA",
+      "TeamName": "McLaren",
+      "PredictedPosition": 6,
+      "Confidence": 91.97684709401592,
+      "DNFProbability": 0.019782470453936066
+    },
+    {
+      "Abbreviation": "HAM",
+      "TeamName": "Ferrari",
+      "PredictedPosition": 7,
+      "Confidence": 88.32644831257078,
+      "DNFProbability": 0.23930648729238882
+    },
+    {
+      "Abbreviation": "HAD",
+      "TeamName": "Red Bull Racing",
+      "PredictedPosition": 8,
+      "Confidence": 90.56704095983432,
+      "DNFProbability": 0.02655528046498405
+    },
+    {
+      "Abbreviation": "GAS",
+      "TeamName": "Alpine",
+      "PredictedPosition": 9,
+      "Confidence": 90.47019079180825,
+      "DNFProbability": 0.36806444350503664
+    },
+    {
+      "Abbreviation": "COL",
+      "TeamName": "Alpine",
+      "PredictedPosition": 10,
+      "Confidence": 84.44182102667462,
+      "DNFProbability": 0.4214791092540826
+    },
+    {
+      "Abbreviation": "BEA",
+      "TeamName": "Haas F1 Team",
+      "PredictedPosition": 11,
+      "Confidence": 87.20078055639826,
+      "DNFProbability": 0.6101380083558592
+    },
+    {
+      "Abbreviation": "OCO",
+      "TeamName": "Haas F1 Team",
+      "PredictedPosition": 12,
+      "Confidence": 87.59424879366138,
+      "DNFProbability": 0.9269326939585247
+    },
+    {
+      "Abbreviation": "HUL",
+      "TeamName": "Audi",
+      "PredictedPosition": 13,
+      "Confidence": 84.13498168156555,
+      "DNFProbability": 0.5693883065990213
+    },
+    {
+      "Abbreviation": "LAW",
+      "TeamName": "Racing Bulls",
+      "PredictedPosition": 14,
+      "Confidence": 86.36363636363636,
+      "DNFProbability": 0.6767428475933097
+    },
+    {
+      "Abbreviation": "SAI",
+      "TeamName": "Williams",
+      "PredictedPosition": 15,
+      "Confidence": 84.65577102888221,
+      "DNFProbability": 0.7960898972707795
+    },
+    {
+      "Abbreviation": "LIN",
+      "TeamName": "Racing Bulls",
+      "PredictedPosition": 16,
+      "Confidence": 89.60822533364711,
+      "DNFProbability": 0.469814149191285
+    },
+    {
+      "Abbreviation": "PER",
+      "TeamName": "Cadillac",
+      "PredictedPosition": 17,
+      "Confidence": 86.72187739381417,
+      "DNFProbability": 0.8521545435645912
+    },
+    {
+      "Abbreviation": "ALB",
+      "TeamName": "Williams",
+      "PredictedPosition": 18,
+      "Confidence": 85.85137269099545,
+      "DNFProbability": 0.9724587004156338
+    },
+    {
+      "Abbreviation": "BOR",
+      "TeamName": "Audi",
+      "PredictedPosition": 19,
+      "Confidence": 84.84545484842425,
+      "DNFProbability": 0.7136564205924527
+    },
+    {
+      "Abbreviation": "ALO",
+      "TeamName": "Aston Martin",
+      "PredictedPosition": 20,
+      "Confidence": 89.15422414050104,
+      "DNFProbability": 0.7803897571954143
+    },
+    {
+      "Abbreviation": "BOT",
+      "TeamName": "Cadillac",
+      "PredictedPosition": 21,
+      "Confidence": 89.87679206758177,
+      "DNFProbability": 0.9646325015250014
+    },
+    {
+      "Abbreviation": "STR",
+      "TeamName": "Aston Martin",
+      "PredictedPosition": 22,
+      "Confidence": 90.92931542600256,
+      "DNFProbability": 0.9454543067685782
+    }
+  ],
+  "generated_at": "2026-05-02T23:34:30.586798+00:00",
+  "training_rows": 465
+}
