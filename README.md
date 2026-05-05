@@ -22,15 +22,15 @@ _Auto-updated by [.github/workflows/race-update.yml](.github/workflows/race-upda
 
 | Mean Spearman | Mean Top-3 (out of 3) | Rating |
 |---|---|---|
-| 0.731 | 2.00 | STRONG |
+| 0.739 | 2.00 | STRONG |
 
 ### Per-race results
 
 | Round | Race | Spearman | Top-3 | Predicted P1 → P3 | Actual P1 → P3 |
 |---|---|---|---|---|---|
 |  | Australian Grand Prix | 0.682 | 2/3 | RUS → LEC → PIA | RUS → ANT → LEC |
-|  | Chinese Grand Prix | 0.622 | 2/3 | RUS → LEC → ANT | ANT → RUS → HAM |
-|  | Japanese Grand Prix | 0.890 | 2/3 | ANT → RUS → LEC | ANT → PIA → LEC |
+|  | Chinese Grand Prix | 0.635 | 2/3 | RUS → LEC → ANT | ANT → RUS → HAM |
+|  | Japanese Grand Prix | 0.900 | 2/3 | ANT → RUS → LEC | ANT → PIA → LEC |
 <!-- accuracy-end -->
 
 <!-- next-race-start -->

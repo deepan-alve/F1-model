@@ -1,117 +1,117 @@
 {
   "race_name": "Australian Grand Prix",
   "year": 2026,
-  "timestamp": "2026-05-01T18:52:25.061228",
+  "timestamp": "2026-05-05T12:48:03.280008",
   "predictions": [
     {
       "Abbreviation": "RUS",
       "PredictedPosition": 1,
-      "Confidence": 92.67067477427405
+      "Confidence": 91.00556237596616
     },
     {
       "Abbreviation": "LEC",
       "PredictedPosition": 2,
-      "Confidence": 91.62407578116046
+      "Confidence": 90.68952030561381
     },
     {
       "Abbreviation": "PIA",
       "PredictedPosition": 3,
-      "Confidence": 88.0466164101115
+      "Confidence": 89.34642676894124
     },
     {
       "Abbreviation": "NOR",
       "PredictedPosition": 4,
-      "Confidence": 89.76851938416112
+      "Confidence": 89.57293907025137
     },
     {
       "Abbreviation": "ANT",
       "PredictedPosition": 5,
-      "Confidence": 87.21154675999443
+      "Confidence": 84.30958367757621
     },
     {
       "Abbreviation": "HAM",
       "PredictedPosition": 6,
-      "Confidence": 83.33608838197877
+      "Confidence": 87.1435130693355
     },
     {
       "Abbreviation": "HAD",
       "PredictedPosition": 7,
-      "Confidence": 84.02251354367992
+      "Confidence": 84.52170571015498
     },
     {
       "Abbreviation": "LAW",
       "PredictedPosition": 8,
-      "Confidence": 89.26057869898827
+      "Confidence": 88.22853054572421
     },
     {
       "Abbreviation": "LIN",
       "PredictedPosition": 9,
-      "Confidence": 90.88387335970222
+      "Confidence": 91.10824196901744
     },
     {
       "Abbreviation": "VER",
       "PredictedPosition": 10,
-      "Confidence": 87.50206628648407
+      "Confidence": 81.70489836591082
     },
     {
       "Abbreviation": "SAI",
       "PredictedPosition": 11,
-      "Confidence": 75.484492642205
+      "Confidence": 76.58808980397734
     },
     {
       "Abbreviation": "BOR",
       "PredictedPosition": 12,
-      "Confidence": 81.1730611308981
+      "Confidence": 83.45498946094703
     },
     {
       "Abbreviation": "HUL",
       "PredictedPosition": 13,
-      "Confidence": 86.23294946472662
+      "Confidence": 87.040360739186
     },
     {
       "Abbreviation": "PER",
       "PredictedPosition": 14,
-      "Confidence": 77.76286083762749
+      "Confidence": 76.33063686645029
     },
     {
       "Abbreviation": "GAS",
       "PredictedPosition": 15,
-      "Confidence": 78.24082051998032
-    },
-    {
-      "Abbreviation": "BEA",
-      "PredictedPosition": 16,
-      "Confidence": 78.49552121307856
-    },
-    {
-      "Abbreviation": "OCO",
-      "PredictedPosition": 17,
-      "Confidence": 79.62473275877062
+      "Confidence": 81.1633087661575
     },
     {
       "Abbreviation": "COL",
+      "PredictedPosition": 16,
+      "Confidence": 85.27883902849561
+    },
+    {
+      "Abbreviation": "BEA",
+      "PredictedPosition": 17,
+      "Confidence": 77.19407548820996
+    },
+    {
+      "Abbreviation": "OCO",
       "PredictedPosition": 18,
-      "Confidence": 82.28892218642126
+      "Confidence": 78.70147467781142
     },
     {
       "Abbreviation": "STR",
       "PredictedPosition": 19,
-      "Confidence": 77.61674507561287
+      "Confidence": 74.64485497483764
     },
     {
       "Abbreviation": "BOT",
       "PredictedPosition": 20,
-      "Confidence": 84.13498168156555
+      "Confidence": 82.60278776435477
     },
     {
       "Abbreviation": "ALO",
       "PredictedPosition": 21,
-      "Confidence": 84.19296805364246
+      "Confidence": 86.29646175200605
     },
     {
       "Abbreviation": "ALB",
       "PredictedPosition": 22,
-      "Confidence": 88.90313125842391
+      "Confidence": 91.89146172105475
     }
   ],
   "actuals": [
