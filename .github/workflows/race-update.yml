@@ -2,9 +2,13 @@ name: Race update
 
 on:
   schedule:
-    # Saturday 23:00 UTC — refresh upcoming-race prediction with actual qualifying data
+    # Saturday 23:00 UTC — first attempt at refreshing the upcoming-race
+    #   prediction. Runs ~6h after a typical European qualifying session.
     - cron: '0 23 * * 6'
-    # Monday 12:00 UTC — score the race that just happened
+    # Sunday 03:00 UTC — backup attempt for races with late-publishing
+    #   qualifying data (Americas / Asia time zones, network lag at FastF1).
+    - cron: '0 3 * * 0'
+    # Monday 12:00 UTC — score the race that just happened.
     - cron: '0 12 * * 1'
   workflow_dispatch:
     inputs:
@@ -65,7 +69,21 @@ jobs:
           git add data/results/ README.md
           if git diff --staged --quiet; then
             echo "No changes to commit."
-          else
-            git commit -m "chore: update predictions and accuracy report [skip ci]"
-            git push
+            exit 0
           fi
+          git commit -m "chore: update predictions and accuracy report [skip ci]"
+
+          # Resilient push: if a human pushed something to main since our
+          # checkout, rebase our single commit on top and try again. Up to
+          # 3 attempts before giving up and failing the workflow.
+          for attempt in 1 2 3; do
+            if git push origin HEAD:main; then
+              echo "Pushed on attempt $attempt."
+              exit 0
+            fi
+            echo "Push rejected on attempt $attempt — fetching latest main and rebasing."
+            git fetch origin main
+            git rebase origin/main
+          done
+          echo "Could not push after 3 attempts — failing the run."
+          exit 1
