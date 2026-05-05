@@ -171,6 +171,21 @@ def load_and_refresh(year: int) -> pd.DataFrame:
         all_data = fetch_historical_data(HISTORY_START_YEAR, year - 1)
         save_to_parquet(all_data, PARQUET_NAME)
 
+    # Drop any current-season rows with NaN FinishPosition. These are
+    # placeholder rows that refresh_current_season builds when only
+    # qualifying data was available (Saturday's pre-race run). On the
+    # next run we want refresh_current_season to re-fetch those rounds
+    # so it picks up the actual race results — but it skips any round
+    # already present in the dataset, so we have to drop them first.
+    if all_data is not None and not all_data.empty:
+        before = len(all_data)
+        all_data = all_data[
+            ~((all_data["Year"] == year) & (all_data["FinishPosition"].isna()))
+        ].reset_index(drop=True)
+        dropped = before - len(all_data)
+        if dropped > 0:
+            print(f"[data] Dropped {dropped} stale row(s) for {year} (incomplete: NaN FinishPosition)")
+
     print(f"[data] Refreshing {year} season (incremental)...")
     all_data = refresh_current_season(year, all_data)
     save_to_parquet(all_data, PARQUET_NAME)
