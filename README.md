@@ -20,11 +20,41 @@ _Auto-updated by [.github/workflows/race-update.yml](.github/workflows/race-upda
 
 ### 2026 season — 4 race(s) scored
 
-**Latest:** Miami Grand Prix — Spearman **0.720**, top-3 **1/3**.
+**Latest:** Miami Grand Prix (Round 4) — Spearman **0.720**, top-3 **1/3**.
 
 | Mean Spearman | Mean Top-3 (out of 3) | Rating |
 |---|---|---|
 | 0.728 | 1.75 | STRONG |
+
+### Latest race — Miami Grand Prix: predicted vs actual
+
+| Pos | Predicted | Actual | Hit |
+|---|---|---|---|
+| 1 | ANT | ANT | ✓ |
+| 2 | VER | NOR |   |
+| 3 | LEC | PIA |   |
+| 4 | RUS | RUS | ✓ |
+| 5 | NOR | VER |   |
+| 6 | PIA | HAM |   |
+| 7 | HAM | COL |   |
+| 8 | GAS | LEC |   |
+| 9 | HUL | SAI |   |
+| 10 | BEA | ALB |   |
+
+**Per-driver delta** (sorted by actual finish; positive Δ = model placed them lower than they finished):
+
+| Driver | Predicted | Actual | Δ |
+|---|---|---|---|
+| ANT | 1 | 1 | 0 |
+| NOR | 5 | 2 | +3 |
+| PIA | 6 | 3 | +3 |
+| RUS | 4 | 4 | 0 |
+| VER | 2 | 5 | -3 |
+| HAM | 7 | 6 | +1 |
+| COL | 13 | 7 | +6 |
+| LEC | 3 | 8 | -5 |
+| SAI | 15 | 9 | +6 |
+| ALB | 16 | 10 | +6 |
 
 ### Per-race results
 
