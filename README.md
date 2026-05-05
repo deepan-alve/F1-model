@@ -16,9 +16,11 @@ Every training run, backtest, and prediction is logged to **MLflow** — paramet
 <!-- accuracy-start -->
 ## Live model accuracy
 
-_Auto-updated by [.github/workflows/race-update.yml](.github/workflows/race-update.yml) every Monday after each race._
+_Auto-updated by [.github/workflows/race-update.yml](.github/workflows/race-update.yml). Pre-race prediction generated Saturday 23:00 UTC after qualifying; race scored Monday 12:00 UTC._
 
 ### 2026 season — 4 race(s) scored
+
+**Latest:** Miami Grand Prix — Spearman **0.720**, top-3 **1/3**.
 
 | Mean Spearman | Mean Top-3 (out of 3) | Rating |
 |---|---|---|
@@ -28,29 +30,18 @@ _Auto-updated by [.github/workflows/race-update.yml](.github/workflows/race-upda
 
 | Round | Race | Spearman | Top-3 | Predicted P1 → P3 | Actual P1 → P3 |
 |---|---|---|---|---|---|
-|  | Australian Grand Prix | 0.676 | 2/3 | LEC → RUS → PIA | RUS → ANT → LEC |
-|  | Chinese Grand Prix | 0.622 | 2/3 | RUS → LEC → ANT | ANT → RUS → HAM |
-|  | Japanese Grand Prix | 0.894 | 2/3 | ANT → RUS → LEC | ANT → PIA → LEC |
-|  | Miami Grand Prix | 0.720 | 1/3 | ANT → VER → LEC | ANT → NOR → PIA |
+| 1 | Australian Grand Prix | 0.676 | 2/3 | LEC → RUS → PIA | RUS → ANT → LEC |
+| 2 | Chinese Grand Prix | 0.622 | 2/3 | RUS → LEC → ANT | ANT → RUS → HAM |
+| 3 | Japanese Grand Prix | 0.894 | 2/3 | ANT → RUS → LEC | ANT → PIA → LEC |
+| 4 | Miami Grand Prix | 0.720 | 1/3 | ANT → VER → LEC | ANT → NOR → PIA |
 <!-- accuracy-end -->
 
 <!-- next-race-start -->
 ## Next race prediction
 
-**2026 Miami Grand Prix — Round 4**
+**2026 Canadian Grand Prix — Round 5**
 
-| Predicted | Driver | Confidence |
-|---|---|---|
-| 1 | ANT | 86.62 |
-| 2 | LEC | 89.59 |
-| 3 | VER | 88.95 |
-| 4 | RUS | 89.91 |
-| 5 | NOR | 84.19 |
-| 6 | PIA | 91.98 |
-| 7 | HAM | 88.33 |
-| 8 | HAD | 90.57 |
-| 9 | GAS | 90.47 |
-| 10 | COL | 84.44 |
+_Prediction will appear here after qualifying._
 <!-- next-race-end -->
 
 ## Pipelines
