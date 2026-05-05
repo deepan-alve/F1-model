@@ -1,117 +1,117 @@
 {
   "race_name": "Australian Grand Prix",
   "year": 2026,
-  "timestamp": "2026-05-05T12:48:03.280008",
+  "timestamp": "2026-05-05T12:50:54.215388",
   "predictions": [
     {
-      "Abbreviation": "RUS",
+      "Abbreviation": "LEC",
       "PredictedPosition": 1,
-      "Confidence": 91.00556237596616
+      "Confidence": 94.40418626890322
     },
     {
-      "Abbreviation": "LEC",
+      "Abbreviation": "RUS",
       "PredictedPosition": 2,
-      "Confidence": 90.68952030561381
+      "Confidence": 91.81818181818183
     },
     {
       "Abbreviation": "PIA",
       "PredictedPosition": 3,
-      "Confidence": 89.34642676894124
+      "Confidence": 89.05729085741346
     },
     {
       "Abbreviation": "NOR",
       "PredictedPosition": 4,
-      "Confidence": 89.57293907025137
-    },
-    {
-      "Abbreviation": "ANT",
-      "PredictedPosition": 5,
-      "Confidence": 84.30958367757621
+      "Confidence": 90.78867627056324
     },
     {
       "Abbreviation": "HAM",
+      "PredictedPosition": 5,
+      "Confidence": 84.53654445797203
+    },
+    {
+      "Abbreviation": "ANT",
       "PredictedPosition": 6,
-      "Confidence": 87.1435130693355
+      "Confidence": 86.17637002671874
     },
     {
       "Abbreviation": "HAD",
       "PredictedPosition": 7,
-      "Confidence": 84.52170571015498
+      "Confidence": 80.23090129660595
     },
     {
       "Abbreviation": "LAW",
       "PredictedPosition": 8,
-      "Confidence": 88.22853054572421
+      "Confidence": 90.51365100454635
     },
     {
       "Abbreviation": "LIN",
       "PredictedPosition": 9,
-      "Confidence": 91.10824196901744
+      "Confidence": 89.3766374891163
     },
     {
       "Abbreviation": "VER",
       "PredictedPosition": 10,
-      "Confidence": 81.70489836591082
+      "Confidence": 86.17637002671874
     },
     {
       "Abbreviation": "SAI",
       "PredictedPosition": 11,
-      "Confidence": 76.58808980397734
-    },
-    {
-      "Abbreviation": "BOR",
-      "PredictedPosition": 12,
-      "Confidence": 83.45498946094703
+      "Confidence": 78.96175156641239
     },
     {
       "Abbreviation": "HUL",
+      "PredictedPosition": 12,
+      "Confidence": 88.10437186279363
+    },
+    {
+      "Abbreviation": "BOR",
       "PredictedPosition": 13,
-      "Confidence": 87.040360739186
+      "Confidence": 81.4581108596626
     },
     {
       "Abbreviation": "PER",
       "PredictedPosition": 14,
-      "Confidence": 76.33063686645029
+      "Confidence": 77.44509810190497
     },
     {
       "Abbreviation": "GAS",
       "PredictedPosition": 15,
-      "Confidence": 81.1633087661575
-    },
-    {
-      "Abbreviation": "COL",
-      "PredictedPosition": 16,
-      "Confidence": 85.27883902849561
+      "Confidence": 85.40098246006558
     },
     {
       "Abbreviation": "BEA",
-      "PredictedPosition": 17,
-      "Confidence": 77.19407548820996
+      "PredictedPosition": 16,
+      "Confidence": 79.93353559861418
     },
     {
       "Abbreviation": "OCO",
+      "PredictedPosition": 17,
+      "Confidence": 78.95302381310869
+    },
+    {
+      "Abbreviation": "COL",
       "PredictedPosition": 18,
-      "Confidence": 78.70147467781142
+      "Confidence": 83.91939495585261
     },
     {
       "Abbreviation": "STR",
       "PredictedPosition": 19,
-      "Confidence": 74.64485497483764
-    },
-    {
-      "Abbreviation": "BOT",
-      "PredictedPosition": 20,
-      "Confidence": 82.60278776435477
+      "Confidence": 82.8875055715206
     },
     {
       "Abbreviation": "ALO",
+      "PredictedPosition": 20,
+      "Confidence": 86.94505501300726
+    },
+    {
+      "Abbreviation": "BOT",
       "PredictedPosition": 21,
-      "Confidence": 86.29646175200605
+      "Confidence": 89.15845829091012
     },
     {
       "Abbreviation": "ALB",
       "PredictedPosition": 22,
-      "Confidence": 91.89146172105475
+      "Confidence": 92.67067477427405
     }
   ],
   "actuals": [
@@ -204,6 +204,6 @@
       "FinishPosition": 21.0
     }
   ],
-  "spearman": 0.6820036225110985,
+  "spearman": 0.6762483176797812,
   "top3_correct": 2
 }
