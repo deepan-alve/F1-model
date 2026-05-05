@@ -130,14 +130,21 @@ def render_accuracy_section(year: int, schedule_info: dict) -> str:
     avg_sp = mean(r["spearman"] for r in scored)
     avg_t3 = mean(r.get("top3_correct", 0) for r in scored)
     latest = scored[-1]
+    latest_round = lookup_round(schedule_info, latest["race_name"]) or "—"
 
     lines.append(f"### {year} season — {len(scored)} race(s) scored")
     lines.append("")
-    lines.append(f"**Latest:** {latest['race_name']} — Spearman **{latest['spearman']:.3f}**, top-3 **{latest.get('top3_correct', 0)}/3**.")
+    lines.append(f"**Latest:** {latest['race_name']} (Round {latest_round}) — Spearman **{latest['spearman']:.3f}**, top-3 **{latest.get('top3_correct', 0)}/3**.")
     lines.append("")
     lines.append("| Mean Spearman | Mean Top-3 (out of 3) | Rating |")
     lines.append("|---|---|---|")
     lines.append(f"| {avg_sp:.3f} | {avg_t3:.2f} | {rating_label(avg_sp)} |")
+    lines.append("")
+
+    # Detailed predicted-vs-actual breakdown for the most recent race.
+    lines.append(f"### Latest race — {latest['race_name']}: predicted vs actual")
+    lines.append("")
+    lines.extend(_render_pred_vs_actual_table(latest))
     lines.append("")
 
     lines.append("### Per-race results")
@@ -154,6 +161,53 @@ def render_accuracy_section(year: int, schedule_info: dict) -> str:
         lines.append(f"| {round_num} | {race} | {sp:.3f} | {t3}/3 | {pred_top3} | {actual_top3} |")
 
     return "\n".join(lines)
+
+
+def _render_pred_vs_actual_table(race_entry: dict, top_n: int = 10) -> list[str]:
+    """
+    Build a side-by-side table comparing the top-N predicted finishing order
+    against the top-N actual finishing order, plus a per-driver delta view
+    (how far off was each prediction).
+    """
+    predictions = race_entry.get("predictions") or []
+    actuals = race_entry.get("actuals") or []
+
+    # Build maps for quick lookup
+    pred_by_driver = {p["Abbreviation"]: p["PredictedPosition"] for p in predictions if p.get("PredictedPosition") is not None}
+    actual_by_driver = {a["Abbreviation"]: a["FinishPosition"] for a in actuals if a.get("FinishPosition") is not None}
+
+    pred_sorted = sorted(predictions, key=lambda p: p.get("PredictedPosition", 999))[:top_n]
+    actual_sorted = sorted(actuals, key=lambda a: a.get("FinishPosition", 999))[:top_n]
+
+    lines: list[str] = []
+    lines.append("| Pos | Predicted | Actual | Hit |")
+    lines.append("|---|---|---|---|")
+    for i in range(top_n):
+        pred = pred_sorted[i]["Abbreviation"] if i < len(pred_sorted) else "—"
+        actual = actual_sorted[i]["Abbreviation"] if i < len(actual_sorted) else "—"
+        hit = "✓" if pred == actual else " "
+        lines.append(f"| {i + 1} | {pred} | {actual} | {hit} |")
+
+    # Per-driver deltas (sorted by actual finish — so the leaderboard reads
+    # naturally and you can see how much the model under/over-rated each driver).
+    lines.append("")
+    lines.append("**Per-driver delta** (sorted by actual finish; positive Δ = model placed them lower than they finished):")
+    lines.append("")
+    lines.append("| Driver | Predicted | Actual | Δ |")
+    lines.append("|---|---|---|---|")
+
+    for actual in actual_sorted:
+        drv = actual["Abbreviation"]
+        actual_pos = int(actual["FinishPosition"])
+        pred_pos = pred_by_driver.get(drv)
+        if pred_pos is None:
+            continue
+        pred_pos = int(pred_pos)
+        delta = pred_pos - actual_pos
+        delta_str = f"+{delta}" if delta > 0 else (f"{delta}" if delta < 0 else "0")
+        lines.append(f"| {drv} | {pred_pos} | {actual_pos} | {delta_str} |")
+
+    return lines
 
 
 # ---------------------------------------------------------------------------
