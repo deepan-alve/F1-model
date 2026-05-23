@@ -71,7 +71,18 @@ _Auto-updated by [.github/workflows/race-update.yml](.github/workflows/race-upda
 
 **2026 Canadian Grand Prix — Round 5**
 
-_Prediction will appear here after qualifying._
+| Predicted | Driver | Team | Confidence |
+|---|---|---|---|
+| 1 | RUS | Mercedes | 92.93 |
+| 2 | ANT | Mercedes | 87.72 |
+| 3 | NOR | McLaren | 88.24 |
+| 4 | PIA | McLaren | 85.39 |
+| 5 | HAM | Ferrari | 84.91 |
+| 6 | VER | Red Bull | 91.01 |
+| 7 | HAD | Red Bull | 90.93 |
+| 8 | LEC | Ferrari | 90.41 |
+| 9 | LIN | RB F1 Team | 89.64 |
+| 10 | COL | Alpine F1 Team | 85.89 |
 <!-- next-race-end -->
 
 ## Pipelines
