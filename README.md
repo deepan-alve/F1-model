@@ -73,7 +73,18 @@ _Auto-updated by [.github/workflows/race-update.yml](.github/workflows/race-upda
 
 **2026 Barcelona Grand Prix — Round 7**
 
-_Prediction will appear here after qualifying._
+| Predicted | Driver | Team | Confidence |
+|---|---|---|---|
+| 1 | RUS | Mercedes | 96.61 |
+| 2 | HAM | Ferrari | 87.04 |
+| 3 | ANT | Mercedes | 86.53 |
+| 4 | NOR | McLaren | 86.95 |
+| 5 | VER | Red Bull Racing | 89.35 |
+| 6 | PIA | McLaren | 89.67 |
+| 7 | HAD | Red Bull Racing | 91.30 |
+| 8 | LAW | Racing Bulls | 92.31 |
+| 9 | LEC | Ferrari | 81.53 |
+| 10 | HUL | Audi | 87.16 |
 <!-- next-race-end -->
 
 ## Pipelines
