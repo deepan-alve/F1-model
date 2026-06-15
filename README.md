@@ -18,43 +18,43 @@ Every training run, backtest, and prediction is logged to **MLflow** — paramet
 
 _Auto-updated by [.github/workflows/race-update.yml](.github/workflows/race-update.yml). Pre-race prediction generated Saturday 23:00 UTC after qualifying; race scored Monday 12:00 UTC._
 
-### 2026 season — 6 race(s) scored
+### 2026 season — 7 race(s) scored
 
-**Latest:** Monaco Grand Prix (Round 6) — Spearman **0.375**, top-3 **2/3**.
+**Latest:** Barcelona Grand Prix (Round 7) — Spearman **0.687**, top-3 **2/3**.
 
 | Mean Spearman | Mean Top-3 (out of 3) | Rating |
 |---|---|---|
-| 0.627 | 1.67 | DECENT |
+| 0.636 | 1.71 | DECENT |
 
-### Latest race — Monaco Grand Prix: predicted vs actual
+### Latest race — Barcelona Grand Prix: predicted vs actual
 
 | Pos | Predicted | Actual | Hit |
 |---|---|---|---|
-| 1 | ANT | ANT | ✓ |
-| 2 | HAM | HAM | ✓ |
-| 3 | VER | HAD |   |
-| 4 | NOR | PIA |   |
-| 5 | HAD | LAW |   |
-| 6 | LEC | LIN |   |
-| 7 | PIA | GAS |   |
-| 8 | RUS | ALB |   |
-| 9 | GAS | OCO |   |
-| 10 | LAW | ALO |   |
+| 1 | RUS | HAM |   |
+| 2 | HAM | RUS |   |
+| 3 | ANT | NOR |   |
+| 4 | NOR | VER |   |
+| 5 | VER | PIA |   |
+| 6 | PIA | HAD |   |
+| 7 | HAD | GAS |   |
+| 8 | LEC | LAW |   |
+| 9 | LAW | LIN |   |
+| 10 | HUL | COL |   |
 
 **Per-driver delta** (sorted by actual finish; positive Δ = model placed them lower than they finished):
 
 | Driver | Predicted | Actual | Δ |
 |---|---|---|---|
-| ANT | 1 | 1 | 0 |
-| HAM | 2 | 2 | 0 |
-| HAD | 5 | 3 | +2 |
-| PIA | 7 | 4 | +3 |
-| LAW | 10 | 5 | +5 |
-| LIN | 15 | 6 | +9 |
-| GAS | 9 | 7 | +2 |
-| ALB | 13 | 8 | +5 |
-| OCO | 16 | 9 | +7 |
-| ALO | 20 | 10 | +10 |
+| HAM | 2 | 1 | +1 |
+| RUS | 1 | 2 | -1 |
+| NOR | 4 | 3 | +1 |
+| VER | 5 | 4 | +1 |
+| PIA | 6 | 5 | +1 |
+| HAD | 7 | 21 | -14 |
+| GAS | 15 | 21 | -6 |
+| LAW | 9 | 21 | -12 |
+| LIN | 12 | 21 | -9 |
+| COL | 13 | 21 | -8 |
 
 ### Per-race results
 
@@ -66,25 +66,15 @@ _Auto-updated by [.github/workflows/race-update.yml](.github/workflows/race-upda
 | 4 | Miami Grand Prix | 0.720 | 1/3 | ANT → VER → LEC | ANT → NOR → PIA |
 | 5 | Canadian Grand Prix | 0.476 | 1/3 | RUS → ANT → NOR | ANT → HAM → VER |
 | 6 | Monaco Grand Prix | 0.375 | 2/3 | ANT → HAM → VER | ANT → HAM → HAD |
+| 7 | Barcelona Grand Prix | 0.687 | 2/3 | RUS → HAM → ANT | HAM → RUS → NOR |
 <!-- accuracy-end -->
 
 <!-- next-race-start -->
 ## Next race prediction
 
-**2026 Barcelona Grand Prix — Round 7**
+**2026 Austrian Grand Prix — Round 8**
 
-| Predicted | Driver | Team | Confidence |
-|---|---|---|---|
-| 1 | RUS | Mercedes | 97.27 |
-| 2 | HAM | Ferrari | 92.40 |
-| 3 | ANT | Mercedes | 86.28 |
-| 4 | NOR | McLaren | 86.60 |
-| 5 | VER | Red Bull Racing | 90.81 |
-| 6 | PIA | McLaren | 88.99 |
-| 7 | HAD | Red Bull Racing | 90.12 |
-| 8 | LAW | Racing Bulls | 94.55 |
-| 9 | LEC | Ferrari | 82.20 |
-| 10 | HUL | Audi | 84.15 |
+_Prediction will appear here after qualifying._
 <!-- next-race-end -->
 
 ## Pipelines
