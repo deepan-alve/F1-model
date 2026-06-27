@@ -74,7 +74,18 @@ _Auto-updated by [.github/workflows/race-update.yml](.github/workflows/race-upda
 
 **2026 Austrian Grand Prix — Round 8**
 
-_Prediction will appear here after qualifying._
+| Predicted | Driver | Team | Confidence |
+|---|---|---|---|
+| 1 | RUS | Mercedes | 94.97 |
+| 2 | LEC | Ferrari | 88.66 |
+| 3 | HAM | Ferrari | 89.01 |
+| 4 | VER | Red Bull Racing | 89.46 |
+| 5 | NOR | McLaren | 91.75 |
+| 6 | ANT | Mercedes | 86.81 |
+| 7 | PIA | McLaren | 93.82 |
+| 8 | LAW | Racing Bulls | 91.24 |
+| 9 | LIN | Racing Bulls | 91.75 |
+| 10 | HAD | Red Bull Racing | 92.31 |
 <!-- next-race-end -->
 
 ## Pipelines
