@@ -1,0 +1,209 @@
+{
+  "race_name": "Austrian Grand Prix",
+  "year": 2026,
+  "timestamp": "2026-06-29T15:51:38.634120",
+  "predictions": [
+    {
+      "Abbreviation": "RUS",
+      "PredictedPosition": 1,
+      "Confidence": 90.29829660995023
+    },
+    {
+      "Abbreviation": "LEC",
+      "PredictedPosition": 2,
+      "Confidence": 86.62197572445811
+    },
+    {
+      "Abbreviation": "HAM",
+      "PredictedPosition": 3,
+      "Confidence": 86.51600275073515
+    },
+    {
+      "Abbreviation": "VER",
+      "PredictedPosition": 4,
+      "Confidence": 87.76943268447845
+    },
+    {
+      "Abbreviation": "NOR",
+      "PredictedPosition": 5,
+      "Confidence": 91.03112206851591
+    },
+    {
+      "Abbreviation": "ANT",
+      "PredictedPosition": 6,
+      "Confidence": 84.7277537353283
+    },
+    {
+      "Abbreviation": "PIA",
+      "PredictedPosition": 7,
+      "Confidence": 91.30139388217738
+    },
+    {
+      "Abbreviation": "LAW",
+      "PredictedPosition": 8,
+      "Confidence": 92.45460630424925
+    },
+    {
+      "Abbreviation": "HAD",
+      "PredictedPosition": 9,
+      "Confidence": 90.50881226462677
+    },
+    {
+      "Abbreviation": "LIN",
+      "PredictedPosition": 10,
+      "Confidence": 91.10824196901744
+    },
+    {
+      "Abbreviation": "GAS",
+      "PredictedPosition": 11,
+      "Confidence": 93.90916629022976
+    },
+    {
+      "Abbreviation": "BOR",
+      "PredictedPosition": 12,
+      "Confidence": 91.38093172525582
+    },
+    {
+      "Abbreviation": "COL",
+      "PredictedPosition": 13,
+      "Confidence": 81.81818181818181
+    },
+    {
+      "Abbreviation": "OCO",
+      "PredictedPosition": 14,
+      "Confidence": 86.63914685754631
+    },
+    {
+      "Abbreviation": "ALB",
+      "PredictedPosition": 15,
+      "Confidence": 82.12378035908773
+    },
+    {
+      "Abbreviation": "HUL",
+      "PredictedPosition": 16,
+      "Confidence": 89.67915977822642
+    },
+    {
+      "Abbreviation": "BEA",
+      "PredictedPosition": 17,
+      "Confidence": 79.85133307893419
+    },
+    {
+      "Abbreviation": "ALO",
+      "PredictedPosition": 18,
+      "Confidence": 78.90943922266023
+    },
+    {
+      "Abbreviation": "SAI",
+      "PredictedPosition": 19,
+      "Confidence": 79.17892922872498
+    },
+    {
+      "Abbreviation": "STR",
+      "PredictedPosition": 20,
+      "Confidence": 90.56704095983432
+    },
+    {
+      "Abbreviation": "PER",
+      "PredictedPosition": 21,
+      "Confidence": 88.33825369400373
+    },
+    {
+      "Abbreviation": "BOT",
+      "PredictedPosition": 22,
+      "Confidence": 91.30139388217738
+    }
+  ],
+  "actuals": [
+    {
+      "Abbreviation": "RUS",
+      "FinishPosition": 1.0
+    },
+    {
+      "Abbreviation": "VER",
+      "FinishPosition": 2.0
+    },
+    {
+      "Abbreviation": "ANT",
+      "FinishPosition": 3.0
+    },
+    {
+      "Abbreviation": "PIA",
+      "FinishPosition": 4.0
+    },
+    {
+      "Abbreviation": "HAM",
+      "FinishPosition": 5.0
+    },
+    {
+      "Abbreviation": "HAD",
+      "FinishPosition": 6.0
+    },
+    {
+      "Abbreviation": "NOR",
+      "FinishPosition": 7.0
+    },
+    {
+      "Abbreviation": "LEC",
+      "FinishPosition": 8.0
+    },
+    {
+      "Abbreviation": "LAW",
+      "FinishPosition": 21.0
+    },
+    {
+      "Abbreviation": "LIN",
+      "FinishPosition": 21.0
+    },
+    {
+      "Abbreviation": "BOR",
+      "FinishPosition": 21.0
+    },
+    {
+      "Abbreviation": "HUL",
+      "FinishPosition": 21.0
+    },
+    {
+      "Abbreviation": "GAS",
+      "FinishPosition": 21.0
+    },
+    {
+      "Abbreviation": "BEA",
+      "FinishPosition": 21.0
+    },
+    {
+      "Abbreviation": "COL",
+      "FinishPosition": 21.0
+    },
+    {
+      "Abbreviation": "OCO",
+      "FinishPosition": 21.0
+    },
+    {
+      "Abbreviation": "ALB",
+      "FinishPosition": 21.0
+    },
+    {
+      "Abbreviation": "ALO",
+      "FinishPosition": 21.0
+    },
+    {
+      "Abbreviation": "STR",
+      "FinishPosition": 21.0
+    },
+    {
+      "Abbreviation": "SAI",
+      "FinishPosition": 21.0
+    },
+    {
+      "Abbreviation": "PER",
+      "FinishPosition": 21.0
+    },
+    {
+      "Abbreviation": "BOT",
+      "FinishPosition": 21.0
+    }
+  ],
+  "spearman": 0.8037247411925414,
+  "top3_correct": 1
+}
