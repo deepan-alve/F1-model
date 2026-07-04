@@ -75,7 +75,18 @@ _Auto-updated by [.github/workflows/race-update.yml](.github/workflows/race-upda
 
 **2026 British Grand Prix — Round 9**
 
-_Prediction will appear here after qualifying._
+| Predicted | Driver | Team | Confidence |
+|---|---|---|---|
+| 1 | ANT | Mercedes | 96.40 |
+| 2 | HAD | Red Bull | 83.02 |
+| 3 | RUS | Mercedes | 84.09 |
+| 4 | LEC | Ferrari | 80.46 |
+| 5 | HAM | Ferrari | 84.73 |
+| 6 | NOR | McLaren | 87.88 |
+| 7 | VER | Red Bull | 85.44 |
+| 8 | PIA | McLaren | 89.66 |
+| 9 | LIN | RB F1 Team | 91.62 |
+| 10 | LAW | RB F1 Team | 87.72 |
 <!-- next-race-end -->
 
 ## Pipelines
