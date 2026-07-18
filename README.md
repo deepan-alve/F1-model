@@ -76,7 +76,18 @@ _Auto-updated by [.github/workflows/race-update.yml](.github/workflows/race-upda
 
 **2026 Belgian Grand Prix — Round 10**
 
-_Prediction will appear here after qualifying._
+| Predicted | Driver | Team | Confidence |
+|---|---|---|---|
+| 1 | ANT | Mercedes | 94.92 |
+| 2 | RUS | Mercedes | 89.06 |
+| 3 | VER | Red Bull | 86.53 |
+| 4 | NOR | McLaren | 88.90 |
+| 5 | LEC | Ferrari | 89.84 |
+| 6 | HAM | Ferrari | 91.24 |
+| 7 | PIA | McLaren | 90.73 |
+| 8 | HAD | Red Bull | 88.36 |
+| 9 | LIN | RB F1 Team | 92.05 |
+| 10 | LAW | RB F1 Team | 90.68 |
 <!-- next-race-end -->
 
 ## Pipelines
