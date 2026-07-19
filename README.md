@@ -78,16 +78,16 @@ _Auto-updated by [.github/workflows/race-update.yml](.github/workflows/race-upda
 
 | Predicted | Driver | Team | Confidence |
 |---|---|---|---|
-| 1 | ANT | Mercedes | 94.92 |
-| 2 | RUS | Mercedes | 89.06 |
-| 3 | VER | Red Bull | 86.53 |
-| 4 | NOR | McLaren | 88.90 |
-| 5 | LEC | Ferrari | 89.84 |
-| 6 | HAM | Ferrari | 91.24 |
-| 7 | PIA | McLaren | 90.73 |
-| 8 | HAD | Red Bull | 88.36 |
-| 9 | LIN | RB F1 Team | 92.05 |
-| 10 | LAW | RB F1 Team | 90.68 |
+| 1 | ANT | Mercedes | 94.55 |
+| 2 | RUS | Mercedes | 87.06 |
+| 3 | VER | Red Bull | 88.82 |
+| 4 | NOR | McLaren | 87.59 |
+| 5 | LEC | Ferrari | 86.65 |
+| 6 | HAM | Ferrari | 86.36 |
+| 7 | PIA | McLaren | 87.20 |
+| 8 | LIN | RB F1 Team | 91.67 |
+| 9 | HAD | Red Bull | 88.12 |
+| 10 | BOR | Audi | 87.27 |
 <!-- next-race-end -->
 
 ## Pipelines

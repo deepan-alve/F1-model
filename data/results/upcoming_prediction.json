@@ -8,157 +8,157 @@
       "Abbreviation": "ANT",
       "TeamName": "Mercedes",
       "PredictedPosition": 1,
-      "Confidence": 94.92028648053326,
+      "Confidence": 94.54545454545455,
       "DNFProbability": 0.18586208334178475
     },
     {
       "Abbreviation": "RUS",
       "TeamName": "Mercedes",
       "PredictedPosition": 2,
-      "Confidence": 89.05729085741346,
+      "Confidence": 87.05808696723477,
       "DNFProbability": 0.21748439522333235
     },
     {
       "Abbreviation": "VER",
       "TeamName": "Red Bull",
       "PredictedPosition": 3,
-      "Confidence": 86.5296298358225,
+      "Confidence": 88.82068682078987,
       "DNFProbability": 0.2813624930817916
     },
     {
       "Abbreviation": "NOR",
       "TeamName": "McLaren",
       "PredictedPosition": 4,
-      "Confidence": 88.90313125842391,
+      "Confidence": 87.59424879366138,
       "DNFProbability": 0.12563130951701038
     },
     {
       "Abbreviation": "LEC",
       "TeamName": "Ferrari",
       "PredictedPosition": 5,
-      "Confidence": 89.84057296106653,
+      "Confidence": 86.64946013823595,
       "DNFProbability": 0.22129956419577546
     },
     {
       "Abbreviation": "HAM",
       "TeamName": "Ferrari",
       "PredictedPosition": 6,
-      "Confidence": 91.23828345769638,
+      "Confidence": 86.36363636363636,
       "DNFProbability": 0.35178507053094576
     },
     {
       "Abbreviation": "PIA",
       "TeamName": "McLaren",
       "PredictedPosition": 7,
-      "Confidence": 90.72905542983129,
+      "Confidence": 87.20078055639826,
       "DNFProbability": 0.3162718420132577
-    },
-    {
-      "Abbreviation": "HAD",
-      "TeamName": "Red Bull",
-      "PredictedPosition": 8,
-      "Confidence": 88.35795593194027,
-      "DNFProbability": 0.8565515968919067
     },
     {
       "Abbreviation": "LIN",
       "TeamName": "RB F1 Team",
-      "PredictedPosition": 9,
-      "Confidence": 92.04581530399595,
+      "PredictedPosition": 8,
+      "Confidence": 91.66804419098938,
       "DNFProbability": 0.4528141347576184
     },
     {
-      "Abbreviation": "LAW",
-      "TeamName": "RB F1 Team",
-      "PredictedPosition": 10,
-      "Confidence": 90.68459021276401,
-      "DNFProbability": 0.4811686067655989
+      "Abbreviation": "HAD",
+      "TeamName": "Red Bull",
+      "PredictedPosition": 9,
+      "Confidence": 88.12368609559671,
+      "DNFProbability": 0.8565515968919067
     },
     {
       "Abbreviation": "BOR",
       "TeamName": "Audi",
-      "PredictedPosition": 11,
-      "Confidence": 87.56098439286437,
+      "PredictedPosition": 10,
+      "Confidence": 87.27272727272728,
       "DNFProbability": 0.6412981276659586
     },
     {
-      "Abbreviation": "GAS",
-      "TeamName": "Alpine F1 Team",
-      "PredictedPosition": 12,
-      "Confidence": 90.2228692091505,
-      "DNFProbability": 0.629762264970151
+      "Abbreviation": "LAW",
+      "TeamName": "RB F1 Team",
+      "PredictedPosition": 11,
+      "Confidence": 88.0466164101115,
+      "DNFProbability": 0.4811686067655989
     },
     {
       "Abbreviation": "COL",
       "TeamName": "Alpine F1 Team",
-      "PredictedPosition": 13,
-      "Confidence": 90.47019079180825,
+      "PredictedPosition": 12,
+      "Confidence": 86.72187739381417,
       "DNFProbability": 0.6316381577636804
+    },
+    {
+      "Abbreviation": "GAS",
+      "TeamName": "Alpine F1 Team",
+      "PredictedPosition": 13,
+      "Confidence": 90.86374943534466,
+      "DNFProbability": 0.629762264970151
     },
     {
       "Abbreviation": "SAI",
       "TeamName": "Williams",
       "PredictedPosition": 14,
-      "Confidence": 88.6616442825032,
+      "Confidence": 83.08450213702685,
       "DNFProbability": 0.4227427217148975
     },
     {
       "Abbreviation": "BEA",
       "TeamName": "Haas F1 Team",
       "PredictedPosition": 15,
-      "Confidence": 87.95478368827165,
+      "Confidence": 88.65759559259824,
       "DNFProbability": 0.7968002554004803
     },
     {
       "Abbreviation": "HUL",
       "TeamName": "Audi",
       "PredictedPosition": 16,
-      "Confidence": 86.17637002671874,
+      "Confidence": 85.53050134992326,
       "DNFProbability": 0.6816765787955298
-    },
-    {
-      "Abbreviation": "OCO",
-      "TeamName": "Haas F1 Team",
-      "PredictedPosition": 17,
-      "Confidence": 84.47727457592036,
-      "DNFProbability": 0.7012136844272514
     },
     {
       "Abbreviation": "ALB",
       "TeamName": "Williams",
-      "PredictedPosition": 18,
-      "Confidence": 85.78338896273951,
+      "PredictedPosition": 17,
+      "Confidence": 88.12368609559671,
       "DNFProbability": 0.8449730786152467
+    },
+    {
+      "Abbreviation": "OCO",
+      "TeamName": "Haas F1 Team",
+      "PredictedPosition": 18,
+      "Confidence": 82.04945064288498,
+      "DNFProbability": 0.7012136844272514
     },
     {
       "Abbreviation": "PER",
       "TeamName": "Cadillac F1 Team",
       "PredictedPosition": 19,
-      "Confidence": 82.56851270512769,
+      "Confidence": 82.31746125952102,
       "DNFProbability": 0.7208958408109206
-    },
-    {
-      "Abbreviation": "BOT",
-      "TeamName": "Cadillac F1 Team",
-      "PredictedPosition": 20,
-      "Confidence": 85.54319946439205,
-      "DNFProbability": 0.9362092751396035
     },
     {
       "Abbreviation": "ALO",
       "TeamName": "Aston Martin",
-      "PredictedPosition": 21,
-      "Confidence": 90.39819423166372,
+      "PredictedPosition": 20,
+      "Confidence": 85.26636875012943,
       "DNFProbability": 0.8928202243821798
+    },
+    {
+      "Abbreviation": "BOT",
+      "TeamName": "Cadillac F1 Team",
+      "PredictedPosition": 21,
+      "Confidence": 88.7062756644944,
+      "DNFProbability": 0.9362092751396035
     },
     {
       "Abbreviation": "STR",
       "TeamName": "Aston Martin",
       "PredictedPosition": 22,
-      "Confidence": 93.3886593244632,
+      "Confidence": 90.04140804536061,
       "DNFProbability": 0.9545874025642422
     }
   ],
-  "generated_at": "2026-07-18T23:42:11.153088+00:00",
+  "generated_at": "2026-07-19T05:40:30.345644+00:00",
   "training_rows": 597
 }
