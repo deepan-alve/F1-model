@@ -77,7 +77,18 @@ _Auto-updated by [.github/workflows/race-update.yml](.github/workflows/race-upda
 
 **2026 Hungarian Grand Prix — Round 11**
 
-_Prediction will appear here after qualifying._
+| Predicted | Driver | Team | Confidence |
+|---|---|---|---|
+| 1 | NOR | McLaren | 93.64 |
+| 2 | LEC | Ferrari | 91.96 |
+| 3 | HAM | Ferrari | 85.80 |
+| 4 | ANT | Mercedes | 91.01 |
+| 5 | PIA | McLaren | 91.82 |
+| 6 | VER | Red Bull | 93.08 |
+| 7 | RUS | Mercedes | 88.24 |
+| 8 | HAD | Red Bull | 92.10 |
+| 9 | LIN | RB F1 Team | 93.64 |
+| 10 | HUL | Audi | 89.91 |
 <!-- next-race-end -->
 
 ## Pipelines
