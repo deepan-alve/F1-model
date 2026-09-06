@@ -79,7 +79,18 @@ _Auto-updated by [.github/workflows/race-update.yml](.github/workflows/race-upda
 
 **2026 Italian Grand Prix — Round 13**
 
-_Prediction will appear here after qualifying._
+| Predicted | Driver | Team | Confidence |
+|---|---|---|---|
+| 1 | RUS | Mercedes | 90.99 |
+| 2 | LEC | Ferrari | 91.17 |
+| 3 | PIA | McLaren | 90.02 |
+| 4 | GAS | Alpine F1 Team | 79.21 |
+| 5 | HAM | Ferrari | 92.82 |
+| 6 | ANT | Mercedes | 93.49 |
+| 7 | VER | Red Bull | 88.23 |
+| 8 | NOR | McLaren | 91.24 |
+| 9 | COL | Alpine F1 Team | 89.64 |
+| 10 | LIN | RB F1 Team | 94.09 |
 <!-- next-race-end -->
 
 ## Pipelines
