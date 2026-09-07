@@ -18,43 +18,43 @@ Every training run, backtest, and prediction is logged to **MLflow** — paramet
 
 _Auto-updated by [.github/workflows/race-update.yml](.github/workflows/race-update.yml). Pre-race prediction generated Saturday 23:00 UTC after qualifying; race scored Monday 12:00 UTC._
 
-### 2026 season — 12 race(s) scored
+### 2026 season — 13 race(s) scored
 
-**Latest:** Dutch Grand Prix (Round 12) — Spearman **0.789**, top-3 **2/3**.
+**Latest:** Italian Grand Prix (Round 13) — Spearman **0.755**, top-3 **2/3**.
 
 | Mean Spearman | Mean Top-3 (out of 3) | Rating |
 |---|---|---|
-| 0.686 | 1.67 | DECENT |
+| 0.691 | 1.69 | DECENT |
 
-### Latest race — Dutch Grand Prix: predicted vs actual
+### Latest race — Italian Grand Prix: predicted vs actual
 
 | Pos | Predicted | Actual | Hit |
 |---|---|---|---|
-| 1 | NOR | NOR | ✓ |
-| 2 | RUS | ANT |   |
-| 3 | PIA | RUS |   |
-| 4 | HAM | HAM | ✓ |
-| 5 | ANT | LEC |   |
-| 6 | VER | PIA |   |
-| 7 | LEC | LAW |   |
-| 8 | LAW | HUL |   |
-| 9 | LIN | ALO |   |
-| 10 | BOR | GAS |   |
+| 1 | RUS | ANT |   |
+| 2 | LEC | RUS |   |
+| 3 | VER | VER | ✓ |
+| 4 | GAS | NOR |   |
+| 5 | HAM | PIA |   |
+| 6 | PIA | HAM |   |
+| 7 | ANT | GAS |   |
+| 8 | NOR | LIN |   |
+| 9 | COL | COL | ✓ |
+| 10 | LIN | TSU |   |
 
 **Per-driver delta** (sorted by actual finish; positive Δ = model placed them lower than they finished):
 
 | Driver | Predicted | Actual | Δ |
 |---|---|---|---|
-| NOR | 1 | 1 | 0 |
-| ANT | 5 | 2 | +3 |
-| RUS | 2 | 3 | -1 |
-| HAM | 4 | 4 | 0 |
-| LEC | 7 | 5 | +2 |
-| PIA | 3 | 6 | -3 |
-| LAW | 8 | 7 | +1 |
-| HUL | 14 | 21 | -7 |
-| ALO | 19 | 21 | -2 |
-| GAS | 11 | 21 | -10 |
+| ANT | 7 | 1 | +6 |
+| RUS | 1 | 2 | -1 |
+| VER | 3 | 3 | 0 |
+| NOR | 8 | 4 | +4 |
+| PIA | 6 | 5 | +1 |
+| HAM | 5 | 6 | -1 |
+| GAS | 4 | 7 | -3 |
+| LIN | 10 | 8 | +2 |
+| COL | 9 | 9 | 0 |
+| TSU | 15 | 10 | +5 |
 
 ### Per-race results
 
@@ -72,25 +72,15 @@ _Auto-updated by [.github/workflows/race-update.yml](.github/workflows/race-upda
 | 10 | Belgian Grand Prix | 0.772 | 2/3 | ANT → RUS → VER | ANT → LEC → VER |
 | 11 | Hungarian Grand Prix | 0.780 | 2/3 | NOR → LEC → VER | NOR → VER → ANT |
 | 12 | Dutch Grand Prix | 0.789 | 2/3 | NOR → RUS → PIA | NOR → ANT → RUS |
+| 13 | Italian Grand Prix | 0.755 | 2/3 | RUS → LEC → VER | ANT → RUS → VER |
 <!-- accuracy-end -->
 
 <!-- next-race-start -->
 ## Next race prediction
 
-**2026 Italian Grand Prix — Round 13**
+**2026 Spanish Grand Prix — Round 14**
 
-| Predicted | Driver | Team | Confidence |
-|---|---|---|---|
-| 1 | RUS | Mercedes | 90.69 |
-| 2 | LEC | Ferrari | 90.81 |
-| 3 | PIA | McLaren | 89.32 |
-| 4 | GAS | Alpine F1 Team | 80.74 |
-| 5 | HAM | Ferrari | 91.73 |
-| 6 | ANT | Mercedes | 91.09 |
-| 7 | VER | Red Bull | 88.36 |
-| 8 | NOR | McLaren | 92.05 |
-| 9 | COL | Alpine F1 Team | 92.07 |
-| 10 | LIN | RB F1 Team | 92.40 |
+_Prediction will appear here after qualifying._
 <!-- next-race-end -->
 
 ## Pipelines
