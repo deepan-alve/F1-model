@@ -80,7 +80,18 @@ _Auto-updated by [.github/workflows/race-update.yml](.github/workflows/race-upda
 
 **2026 Spanish Grand Prix — Round 14**
 
-_Prediction will appear here after qualifying._
+| Predicted | Driver | Team | Confidence |
+|---|---|---|---|
+| 1 | NOR | McLaren | 95.24 |
+| 2 | ANT | Mercedes | 92.43 |
+| 3 | VER | Red Bull | 91.16 |
+| 4 | RUS | Mercedes | 83.13 |
+| 5 | LEC | Ferrari | 90.11 |
+| 6 | HAM | Ferrari | 90.57 |
+| 7 | LAW | Red Bull | 92.48 |
+| 8 | PIA | McLaren | 87.96 |
+| 9 | LIN | RB F1 Team | 92.52 |
+| 10 | COL | Alpine F1 Team | 92.98 |
 <!-- next-race-end -->
 
 ## Pipelines
