@@ -18,43 +18,43 @@ Every training run, backtest, and prediction is logged to **MLflow** — paramet
 
 _Auto-updated by [.github/workflows/race-update.yml](.github/workflows/race-update.yml). Pre-race prediction generated Saturday 23:00 UTC after qualifying; race scored Monday 12:00 UTC._
 
-### 2026 season — 14 race(s) scored
+### 2026 season — 15 race(s) scored
 
-**Latest:** Spanish Grand Prix (Round 14) — Spearman **0.807**, top-3 **2/3**.
+**Latest:** Azerbaijan Grand Prix (Round 15) — Spearman **0.559**, top-3 **1/3**.
 
 | Mean Spearman | Mean Top-3 (out of 3) | Rating |
 |---|---|---|
-| 0.699 | 1.71 | DECENT |
+| 0.690 | 1.67 | DECENT |
 
-### Latest race — Spanish Grand Prix: predicted vs actual
+### Latest race — Azerbaijan Grand Prix: predicted vs actual
 
 | Pos | Predicted | Actual | Hit |
 |---|---|---|---|
-| 1 | NOR | ANT |   |
-| 2 | ANT | VER |   |
-| 3 | RUS | NOR |   |
-| 4 | VER | LEC |   |
-| 5 | LEC | RUS |   |
-| 6 | HAM | LAW |   |
-| 7 | LAW | COL |   |
-| 8 | PIA | PIA | ✓ |
-| 9 | LIN | LIN | ✓ |
-| 10 | COL | HUL |   |
+| 1 | LEC | RUS |   |
+| 2 | RUS | VER |   |
+| 3 | PIA | HAD |   |
+| 4 | ANT | LEC |   |
+| 5 | NOR | ANT |   |
+| 6 | HAD | HAM |   |
+| 7 | HAM | LIN |   |
+| 8 | VER | OCO |   |
+| 9 | GAS | BEA |   |
+| 10 | SAI | SAI | ✓ |
 
 **Per-driver delta** (sorted by actual finish; positive Δ = model placed them lower than they finished):
 
 | Driver | Predicted | Actual | Δ |
 |---|---|---|---|
-| ANT | 2 | 1 | +1 |
-| VER | 4 | 2 | +2 |
-| NOR | 1 | 3 | -2 |
-| LEC | 5 | 4 | +1 |
-| RUS | 3 | 5 | -2 |
-| LAW | 7 | 6 | +1 |
-| COL | 10 | 7 | +3 |
-| PIA | 8 | 8 | 0 |
-| LIN | 9 | 21 | -12 |
-| HUL | 12 | 21 | -9 |
+| RUS | 2 | 1 | +1 |
+| VER | 8 | 2 | +6 |
+| HAD | 6 | 3 | +3 |
+| LEC | 1 | 4 | -3 |
+| ANT | 4 | 5 | -1 |
+| HAM | 7 | 6 | +1 |
+| LIN | 14 | 7 | +7 |
+| OCO | 17 | 8 | +9 |
+| BEA | 13 | 9 | +4 |
+| SAI | 10 | 10 | 0 |
 
 ### Per-race results
 
@@ -74,12 +74,13 @@ _Auto-updated by [.github/workflows/race-update.yml](.github/workflows/race-upda
 | 12 | Dutch Grand Prix | 0.789 | 2/3 | NOR → RUS → PIA | NOR → ANT → RUS |
 | 13 | Italian Grand Prix | 0.755 | 2/3 | RUS → LEC → VER | ANT → RUS → VER |
 | 14 | Spanish Grand Prix | 0.807 | 2/3 | NOR → ANT → RUS | ANT → VER → NOR |
+| 15 | Azerbaijan Grand Prix | 0.559 | 1/3 | LEC → RUS → PIA | RUS → VER → HAD |
 <!-- accuracy-end -->
 
 <!-- next-race-start -->
 ## Next race prediction
 
-**2026 Azerbaijan Grand Prix — Round 15**
+**2026 Bahrain Grand Prix — Round 16**
 
 _Prediction will appear here after qualifying._
 <!-- next-race-end -->
